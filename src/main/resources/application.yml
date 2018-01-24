@@ -1,0 +1,22 @@
+spring:
+  thymeleaf:
+    cache: false
+    #非严格模式的HTML语法检查
+    mode: LEGACYHTML5
+  datasource:
+    druid:
+      db-type: mysql
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/blogv20180108?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
+      username: root
+      password: 12345678
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+    type: com.alibaba.druid.pool.DruidDataSource
+  http:
+    multipart:
+      max-file-size: 10MB
+  resources:
+    static-locations: file:f://upload/

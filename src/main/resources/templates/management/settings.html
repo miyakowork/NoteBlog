@@ -1,0 +1,199 @@
+<div class="layui-row layui-admin-mt10">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a><cite>内容管理</cite></a>
+                <a><cite>网站设置</cite></a>
+            </span>
+</div>
+<hr>
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+        <div class="layui-tab layui-tab-card">
+            <div class="layui-tab-content start">
+                <div class="layui-form">
+
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>评论设置</legend>
+                    </fieldset>
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">全站评论</label>
+                            <div class="layui-input-inline">
+                                <input type="checkbox" name="comment" lay-skin="switch" lay-text="开启|关闭"
+                                       th:checked="${all_comment_open eq '1'}">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">开启则按照每篇文章的设定来，如关闭则全局关闭（忽略文章的设置）</div>
+                        </div>
+                    </div>
+
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>文本设置</legend>
+                    </fieldset>
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">logo文本</label>
+                            <div class="layui-input-inline" style="width: 350px;">
+                                <input type="text" name="logo" required lay-verify="required" placeholder="请输入文本"
+                                       th:value="${website_title}"
+                                       autocomplete="off" class="layui-input"></div>
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn-sm layui-btn" lay-submit lay-filter="logo">提交</button>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">页眉文本</label>
+                            <div class="layui-input-inline" style="width: 550px;">
+                                <input type="text" name="eyebrow" required lay-verify="required" placeholder="请输入文本"
+                                       autocomplete="off" class="layui-input"></div>
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn-sm layui-btn" lay-submit lay-filter="eyebrow">提交</button>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">页脚文本</label>
+                            <div class="layui-input-inline" style="width: 550px;">
+                                <input type="text" name="footer" required lay-verify="required" placeholder="请输入文本"
+                                       autocomplete="off" class="layui-input"></div>
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn-sm layui-btn" lay-submit lay-filter="logo">提交</button>
+                        </div>
+                    </div>
+
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>导航栏设置</legend>
+                    </fieldset>
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">额外链接</label>
+                            <div class="layui-input-inline">
+                                <input type="checkbox" name="linkStatus" lay-skin="switch" lay-text="开启|关闭">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">开启显示则可以在导航栏设置额外的一个链接</div>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">额外链接</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="linkIcon" required lay-verify="required"
+                                       placeholder="font-awesome字体图标"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="linkText" required lay-verify="required" placeholder="请输入文本"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline" style="width: 400px;">
+                                <input type="text" name="linkUrl" required lay-verify="required" placeholder="请输入链接url"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn-sm layui-btn" lay-submit lay-filter="link">提交</button>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">主页名称</label>
+                            <div class="layui-input-inline" style="width: 250px;">
+                                <input type="text" name="home" required lay-verify="required" placeholder="请输入文本"
+                                       autocomplete="off" class="layui-input"></div>
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn-sm layui-btn" lay-submit lay-filter="home">提交</button>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">笔记名称</label>
+                            <div class="layui-input-inline" style="width: 250px;">
+                                <input type="text" name="note" required lay-verify="required" placeholder="请输入文本"
+                                       autocomplete="off" class="layui-input"></div>
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn-sm layui-btn" lay-submit lay-filter="note">提交</button>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">关于名称</label>
+                            <div class="layui-input-inline" style="width: 250px;">
+                                <input type="text" name="about" required lay-verify="required" placeholder="请输入文本"
+                                       autocomplete="off" class="layui-input"></div>
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn-sm layui-btn" lay-submit lay-filter="about">提交</button>
+                        </div>
+                    </div>
+
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>第三方设置</legend>
+                    </fieldset>
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">开启QQ登录</label>
+                            <div class="layui-input-inline">
+                                <input type="checkbox" name="qqStatus" lay-skin="switch" lay-text="开启|关闭">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">开启则网站用户可以使用QQ快速登录</div>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">APP ID</label>
+                            <div class="layui-input-inline" style="width: 250px;">
+                                <input type="text" name="appId" required lay-verify="required" placeholder="请输入AppId"
+                                       autocomplete="off" class="layui-input"></div>
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn-sm layui-btn" lay-submit lay-filter="appId">提交</button>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">APP Key</label>
+                            <div class="layui-input-inline" style="width: 250px;">
+                                <input type="text" name="appKey" required lay-verify="required" placeholder="请输入AppKey"
+                                       autocomplete="off" class="layui-input"></div>
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn-sm layui-btn" lay-submit lay-filter="appKey">提交</button>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">统计代码</label>
+                            <div class="layui-input-inline" style="width: 550px;">
+                                <input type="text" name="statistics" required lay-verify="required" placeholder="请输入代码"
+                                       autocomplete="off" class="layui-input"></div>
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn-sm layui-btn" lay-submit lay-filter="statistics">提交</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

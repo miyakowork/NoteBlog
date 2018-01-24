@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>笔记博客后台管理</title>
+    <link rel="stylesheet" href="/static/plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/assets/css/management/admin.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo"><span><i class="layui-icon">&#xe628;</i>笔记博客</span> 后台管理</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left layui-hide layui-show-sm-inline-block">
+            <li class="layui-nav-item"><a href="#home"><i class="fa fa-dashboard"></i> 控制台</a></li>
+            <li class="layui-nav-item"><a href="index.html" target="_blank"><i class="fa fa-home"></i> 前台首页</a></li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item layui-hide-xs layui-hide-sm layui-show-md-block">
+                <a href="javascript:;">
+                    <img src="/static/assets/img/bmy.png" class="layui-nav-img">
+                    彬码俑
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="#profile"><i class="fa fa-user"></i> 我的资料</a></dd>
+                    <dd><a href=""><i class="fa fa-cogs"></i> 偏好设置</a></dd>
+                    <hr>
+                    <dd><a href=""><i class="fa fa-sign-out"></i> 退了</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item layui-hide-lg layui-hide-md layui-show-sm-block">
+                <a href="javascript:leftMenu();" style="font-size: 18px;"><i class="fa fa-navicon"></i> </a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="left-menu" class="layui-side layui-bg-black ">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="">
+                <li class="layui-nav-item layui-show-xs-block layui-hide">
+                    <a href="javascript:;">
+                        <img src="/static/assets/img/bmy.png" class="layui-nav-img">
+                        彬码俑
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="#profile"><i class="fa fa-user"></i> 我的资料</a></dd>
+                        <dd><a href=""><i class="fa fa-cogs"></i> 偏好设置</a></dd>
+                        <dd class="layui-hide-lg layui-hide-md layui-hide-sm layui-show-xs-block"><a href="#home"><i
+                                class="fa fa-dashboard"></i> 控制台</a></dd>
+                        <dd class="layui-hide-lg layui-hide-md layui-hide-sm layui-show-xs-block"><a href="index.html"
+                                                                                                     target="_blank"><i
+                                class="fa fa-home"></i> 前台首页</a></dd>
+                        <dd><a href=""><i class="fa fa-sign-out"></i> 退了</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;"><i class="fa fa-keyboard-o"></i> 发布内容</a>
+                    <dl class="layui-nav-child">
+                        <dd><a class="" href="#blog"><i class="fa fa-book"></i> 发布博文</a></dd>
+                        <dd><a href="#note"><i class="fa fa-sticky-note-o"></i> 撰写笔记</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;"><i class="fa fa-keyboard-o"></i> 内容管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="#blogs"><i class="fa fa-book"></i> 博文管理</a></dd>
+                        <dd><a href="#notes"><i class="fa fa-sticky-note-o"></i> 笔记管理</a></dd>
+                        <dd><a href="#about"><i class="fa fa-trademark"></i> 关于内容</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="fa fa-star-o"></i> 类别管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="#tag"><i class="fa fa-tags"></i> 标签管理</a></dd>
+                        <dd><a href="#cate"><i class="fa fa-sliders"></i> 分类管理</a></dd>
+                        <dd><a href="#keyword"><i class="fa fa-text-width"></i> 关键字管理</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="#users"><i class="fa fa-users"></i> 用户管理</a></li>
+                <li class="layui-nav-item"><a href=""><i class="fa fa-comment-o"></i> 评论管理</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="fa fa-cog"></i> 偏好设置</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="#settings"><i class="fa fa-balance-scale"></i> 网站设置</a></dd>
+                        <dd><a href="javascript:;"><i class="fa fa-money"></i> 打赏二维码</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href=""><i class="fa fa-area-chart"></i> 网站统计</a></li>
+                <li class="layui-nav-item"><a href=""><i class="fa fa-info-circle"></i> 关于笔记博客</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="admin-body" class="layui-body">
+        <!-- 内容主体区域 -->
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © <a href="//wuwenbin.me" target="_blank">笔记博客</a> - 后台管理。<a href="javascript:;"
+                                                                                style="color: #1E9FFF;">请我喝一杯咖啡.</a>
+    </div>
+</div>
+<script src="/static/plugins/jquery/jquery-2.1.4.min.js"></script>
+<script src="/static/plugins/layui/layui.js"></script>
+<script src="/static/assets/js/BMY.js"></script>
+<script src="/static/plugins/spa/vipspa.js"></script>
+<script src="/static/assets/js/management/config/spa.config.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+    });
+
+    function leftMenu() {
+        var $leftMenu = $("#left-menu");
+        var left = $leftMenu.css("left");
+        if (left === "-200px") {
+            $leftMenu.animate({
+                left: 0
+            })
+        } else {
+            $leftMenu.animate({
+                left: "-200px"
+            })
+        }
+    }
+
+    $(function () {
+        var hash = location.hash;
+        var restIndex = hash.indexOf("!!");
+        if (restIndex > -1) {
+            hash = hash.substring(0, restIndex);
+        }
+        var $layuiThis = $("li.layui-nav-item a[href=" + hash + "]");
+        if ($layuiThis !== undefined && $layuiThis.length === 1) {
+            $layuiThis.addClass("layui-this").css("color", "#ffffff");
+            $layuiThis.parents("li.layui-nav-item").addClass("layui-nav-itemed");
+        }
+        $("li.layui-nav-item").click(function () {
+            $(this).siblings("li").removeClass("layui-nav-itemed");
+        })
+    })
+</script>
+</body>
+</html>
