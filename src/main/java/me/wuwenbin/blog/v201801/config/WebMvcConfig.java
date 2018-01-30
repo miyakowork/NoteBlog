@@ -3,8 +3,12 @@ package me.wuwenbin.blog.v201801.config;
 import me.wuwenbin.blog.v201801.config.interceptor.AdminInterceptor;
 import me.wuwenbin.blog.v201801.config.interceptor.SessionInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
+import org.springframework.boot.web.servlet.ErrorPage;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -38,9 +42,18 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
      *
      * @param registry
      */
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new SessionInterceptor()).addPathPatterns("/management/**", "/token/**");
-//        registry.addInterceptor(new AdminInterceptor()).addPathPatterns("/management/**");
-//    }
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new SessionInterceptor()).addPathPatterns("/management/**", "/token/**");
+        registry.addInterceptor(new AdminInterceptor()).addPathPatterns("/management/**");
+    }
+
+    @Bean
+    public EmbeddedServletContainerCustomizer containerCustomizer() {
+        return container -> {
+            container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/error?errorCode=404"));
+            container.addErrorPages(new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/error?errorCode=500"));
+            container.addErrorPages(new ErrorPage(Throwable.class, "/error?errorCode=500"));
+        };
+    }
 }

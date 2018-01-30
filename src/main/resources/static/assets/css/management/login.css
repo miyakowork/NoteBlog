@@ -102,3 +102,20 @@ body {
     color: #fff;
     border-radius: 50%;
 }
+
+.layadmin-user-login-footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    line-height: 30px;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, .5);
+}
+
+.layadmin-user-login-footer a {
+    padding: 0 5px;
+    color: rgba(0, 0, 0, .5);
+}

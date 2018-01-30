@@ -22,14 +22,14 @@
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item layui-hide-xs layui-hide-sm layui-show-md-block">
                 <a href="javascript:;">
-                    <img src="/static/assets/img/bmy.png" class="layui-nav-img">
-                    彬码俑
+                    <img th:src="${avatar}" class="layui-nav-img">
+                    <span th:text="${nickname}"></span>
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="#profile"><i class="fa fa-user"></i> 我的资料</a></dd>
-                    <dd><a href=""><i class="fa fa-cogs"></i> 偏好设置</a></dd>
+                    <dd><a href="#settings"><i class="fa fa-cogs"></i> 偏好设置</a></dd>
                     <hr>
-                    <dd><a href=""><i class="fa fa-sign-out"></i> 退了</a></dd>
+                    <dd><a href="/management/logout?from=management"><i class="fa fa-sign-out"></i> 退了</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item layui-hide-lg layui-hide-md layui-show-sm-block">
@@ -49,7 +49,7 @@
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a href="#profile"><i class="fa fa-user"></i> 我的资料</a></dd>
-                        <dd><a href=""><i class="fa fa-cogs"></i> 偏好设置</a></dd>
+                        <dd><a href="#settings"><i class="fa fa-cogs"></i> 偏好设置</a></dd>
                         <dd class="layui-hide-lg layui-hide-md layui-hide-sm layui-show-xs-block"><a href="#home"><i
                                 class="fa fa-dashboard"></i> 控制台</a></dd>
                         <dd class="layui-hide-lg layui-hide-md layui-hide-sm layui-show-xs-block"><a href="index.html"
@@ -66,7 +66,7 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a class="" href="javascript:;"><i class="fa fa-keyboard-o"></i> 内容管理</a>
+                    <a class="" href="javascript:;"><i class="fa fa-code"></i> 内容管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="#blogs"><i class="fa fa-book"></i> 博文管理</a></dd>
                         <dd><a href="#notes"><i class="fa fa-sticky-note-o"></i> 笔记管理</a></dd>
@@ -83,16 +83,15 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="#users"><i class="fa fa-users"></i> 用户管理</a></li>
-                <li class="layui-nav-item"><a href=""><i class="fa fa-comment-o"></i> 评论管理</a></li>
+                <li class="layui-nav-item"><a href="#comment"><i class="fa fa-comment-o"></i> 评论管理</a></li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;"><i class="fa fa-cog"></i> 偏好设置</a>
+                    <a href="javascript:void(0);"><i class="fa fa-cog"></i> 偏好设置</a>
                     <dl class="layui-nav-child">
                         <dd><a href="#settings"><i class="fa fa-balance-scale"></i> 网站设置</a></dd>
-                        <dd><a href="javascript:;"><i class="fa fa-money"></i> 打赏二维码</a></dd>
+                        <dd><a href="#qrcode"><i class="fa fa-money"></i> 打赏二维码</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href=""><i class="fa fa-area-chart"></i> 网站统计</a></li>
-                <li class="layui-nav-item"><a href=""><i class="fa fa-info-circle"></i> 关于笔记博客</a></li>
+                <li class="layui-nav-item"><a href="#noteblog"><i class="fa fa-info-circle"></i> 关于笔记博客</a></li>
             </ul>
         </div>
     </div>
@@ -103,10 +102,20 @@
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
-        © <a href="//wuwenbin.me" target="_blank">笔记博客</a> - 后台管理。<a href="javascript:;"
-                                                                                style="color: #1E9FFF;">请我喝一杯咖啡.</a>
+        © <a href="//wuwenbin.me" target="_blank">笔记博客</a> - 后台管理。<a href="javascript:BMY.coffee4Me();"
+                                                                     style="color: #1E9FFF;">请我喝一杯咖啡.</a>
     </div>
 </div>
+<script type="text/html" id="error">
+    <div class="layui-hide">
+        {{errStatus}}
+    </div>
+    <div class="layui-fluid">
+        <div class="layui-row layui-admin-mt20">
+            {{errContent}}
+        </div>
+    </div>
+</script>
 <script src="/static/plugins/jquery/jquery-2.1.4.min.js"></script>
 <script src="/static/plugins/layui/layui.js"></script>
 <script src="/static/assets/js/BMY.js"></script>
@@ -116,6 +125,7 @@
     //JavaScript代码区域
     layui.use('element', function () {
         var element = layui.element;
+        element.render();
     });
 
     function leftMenu() {
@@ -133,20 +143,18 @@
     }
 
     $(function () {
-        var hash = location.hash;
-        var restIndex = hash.indexOf("!!");
-        if (restIndex > -1) {
-            hash = hash.substring(0, restIndex);
-        }
-        var $layuiThis = $("li.layui-nav-item a[href=" + hash + "]");
-        if ($layuiThis !== undefined && $layuiThis.length === 1) {
-            $layuiThis.addClass("layui-this").css("color", "#ffffff");
-            $layuiThis.parents("li.layui-nav-item").addClass("layui-nav-itemed");
-        }
-        $("li.layui-nav-item").click(function () {
-            $(this).siblings("li").removeClass("layui-nav-itemed");
+        BMY.hashChange($);
+
+        $(window).resize(function () {
+            if (document.getElementsByTagName("body")[0].offsetWidth > 768) {
+                $("#left-menu").addClass("slideOutLeft").css("left", 0)
+            } else {
+                $("#left-menu").css("left", "-200px")
+            }
         })
-    })
+    });
+
+
 </script>
 </body>
 </html>

@@ -5,6 +5,7 @@ import me.wuwenbin.modules.repository.annotation.field.SQL;
 import me.wuwenbin.modules.repository.annotation.type.Repository;
 import me.wuwenbin.modules.repository.api.open.IPageAndSortRepository;
 import me.wuwenbin.modules.repository.provider.find.annotation.Primitive;
+import me.wuwenbin.modules.repository.provider.save.annotation.SaveSQL;
 import me.wuwenbin.modules.repository.provider.update.annotation.Modify;
 import me.wuwenbin.modules.sql.constant.Router;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,4 +31,10 @@ public interface ArticleRepository extends IPageAndSortRepository<Article, Long>
     Integer findMaxTopById();
 
     int updateTopById(int top, long articleId) throws Exception;
+
+    @SQL("SELECT * FROM t_article WHERE draft = 0 ORDER BY post DESC LIMIT 1")
+    Article findLatestArticle();
+
+    @SaveSQL(columns = {"id", "title", "cate_id", "content"})
+    int saveSimpleArticle(Article article) throws Exception;
 }

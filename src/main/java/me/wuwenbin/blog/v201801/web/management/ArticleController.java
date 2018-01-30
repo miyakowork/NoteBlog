@@ -1,6 +1,5 @@
 package me.wuwenbin.blog.v201801.web.management;
 
-import cn.hutool.core.util.StrUtil;
 import me.wuwenbin.blog.v201801.model.Article;
 import me.wuwenbin.blog.v201801.model.bo.ArticleQueryBo;
 import me.wuwenbin.blog.v201801.model.vo.ArticleVo;
@@ -8,18 +7,15 @@ import me.wuwenbin.blog.v201801.repository.ArticleRepository;
 import me.wuwenbin.blog.v201801.repository.CateRepository;
 import me.wuwenbin.blog.v201801.repository.TagReferRepository;
 import me.wuwenbin.blog.v201801.service.ArticleService;
-import me.wuwenbin.blog.v201801.service.support.NK;
+import me.wuwenbin.blog.v201801.service.support.NkUpload;
 import me.wuwenbin.blog.v201801.web.BaseController;
 import me.wuwenbin.modules.jpa.support.Page;
 import me.wuwenbin.modules.pagination.model.layui.LayuiTable;
 import me.wuwenbin.modules.utils.http.R;
-import me.wuwenbin.modules.utils.http.WebUtils;
-import me.wuwenbin.modules.utils.lang.LangUtils;
 import me.wuwenbin.modules.valdiation.template.RTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,7 +25,6 @@ import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.Map;
 
-import static java.time.LocalDateTime.now;
 import static me.wuwenbin.modules.utils.web.Controllers.builder;
 import static me.wuwenbin.modules.valdiation.assertion.Assert.check;
 
@@ -133,10 +128,10 @@ public class ArticleController extends BaseController {
                 String pureBase64Data = pureData[1];
                 return articleService.upload(contentType, pureBase64Data);
             } else {
-                return NK.err("数据不合法，上传失败！");
+                return NkUpload.err("数据不合法，上传失败！");
             }
         } else {
-            NK.err("数据为空，上传失败！");
+            NkUpload.err("数据为空，上传失败！");
         }
         return articleService.upload(file);
     }

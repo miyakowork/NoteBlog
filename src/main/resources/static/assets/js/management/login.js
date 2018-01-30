@@ -27,9 +27,9 @@ layui.use('form', function () {
         BMY.ajax("/login", data.field, function (resp) {
                 if (resp.code === BMY.status.ok) {
                     layer.msg("登录成功！");
-                    // setTimeout(function () {
-                    //     location.href = BMY.url.manage_index;
-                    // }, 1000);
+                    setTimeout(function () {
+                        location.href = BMY.url.manage_index;
+                    }, 1000);
                 } else {
                     layer.msg("登录失败！");
                 }

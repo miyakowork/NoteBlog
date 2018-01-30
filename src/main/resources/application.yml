@@ -20,3 +20,5 @@ spring:
       max-file-size: 10MB
   resources:
     static-locations: file:f://upload/
+server:
+  port: 8080

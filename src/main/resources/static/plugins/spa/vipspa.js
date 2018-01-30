@@ -159,6 +159,7 @@
                 }).html(data).delay(50).animate({
                     opacity: '1.0'
                 }, 500);
+                BMY.hashChange($);
                 loadScript(routerItem.controller);
             },
             error: function (xhr, errorType, error) {

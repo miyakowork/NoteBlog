@@ -4,12 +4,12 @@ layui.use(['form', 'table', 'element'], function () {
         , form = layui.form;
     element.render();
 
-    table.render({
+    var userTable = table.render({
         elem: '#user-table'
         , url: BMY.url.prefix + '/user/list'
         , page: true
         , limit: 10
-        , height: 'full-330'
+        , height: 'full'
         , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         , cols: [[
             {field: 'id', width: 80, title: 'ID', sort: true}
@@ -38,6 +38,16 @@ layui.use(['form', 'table', 'element'], function () {
         BMY.ajax(BMY.url.prefix + "/user/edit/enable", {id: this.value, enable: obj.elem.checked}, function (json) {
             BMY.okMsgHandle(json);
             layer.tips('用户状态：' + ((obj.elem.checked) ? "正常" : "锁定"), obj.othis);
+        });
+    });
+
+    table.on('sort(user)', function (obj) {
+        userTable.reload({
+            initSort: obj
+            , where: {
+                sort: obj.field
+                , order: obj.type
+            }
         });
     });
 

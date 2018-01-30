@@ -41,7 +41,8 @@ public class QqLoginController extends BaseController {
         if (r.get(R.CODE).equals(R.SUCCESS)) {
             return "redirect:" + r.get(R.DATA);
         } else {
-            return "error";
+            return "error/page";
         }
     }
+
 }

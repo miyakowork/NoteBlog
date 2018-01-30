@@ -30,12 +30,10 @@ layui.use(['element', 'layer'], function () {
         })
     })
 
+    $(".layui-tab-title>li:eq(0)").addClass("layui-this")
+
 });
 
-$(function () {
-
-
-})
 
 
 

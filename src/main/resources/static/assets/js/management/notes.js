@@ -4,17 +4,21 @@ layui.use(['form', 'table', 'element'], function () {
         , element = layui.element;
 
     element.render();
-    table.render({
+    var noteTable = table.render({
         elem: '#note-table'
-        , height: 'full-320'
+        , height: 'full'
         , url: BMY.url.prefix + "/note/list"
         , cellMinWidth: 90
         , limit: 10
         , size: 'lg'
         , method: "post"
         , where: {
-            order: 'asc'
+            order: 'desc'
             , sort: 'post'
+        }
+        , initSort: {
+            field: 'post'
+            , type: 'desc'
         }
         , cols: [[
             {type: 'numbers'}
@@ -32,7 +36,6 @@ layui.use(['form', 'table', 'element'], function () {
             , {title: '操作', width: 200, align: 'center', toolbar: '#noteBar'}
         ]]
         , page: true
-        , initSort: {field: 'post', type: 'desc'}
     });
 
     var $ = layui.$, active = {
@@ -72,7 +75,7 @@ layui.use(['form', 'table', 'element'], function () {
     });
 
     table.on('sort(note)', function (obj) {
-        table.reload('note-table', {
+        noteTable.reload({
             initSort: obj
             , where: {
                 sort: obj.field

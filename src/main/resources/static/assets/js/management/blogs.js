@@ -4,9 +4,9 @@ layui.use(['form', 'table', 'element'], function () {
         , element = layui.element;
 
     element.render();
-    table.render({
+    var articleTable = table.render({
         elem: '#article-table'
-        , height: 'full-310'
+        , height: 'full'
         , url: BMY.url.prefix + "/blog/list"
         , cellMinWidth: 90
         , limit: 10
@@ -15,6 +15,10 @@ layui.use(['form', 'table', 'element'], function () {
         , where: {
             order: 'desc'
             , sort: 'post'
+        }
+        , initSort: {
+            field: 'post'
+            , type: 'desc'
         }
         , cols: [[
             {type: 'numbers'}
@@ -80,7 +84,7 @@ layui.use(['form', 'table', 'element'], function () {
     });
 
     table.on('sort(article)', function (obj) {
-        table.reload('article-table', {
+        articleTable.reload({
             initSort: obj
             , where: {
                 sort: obj.field

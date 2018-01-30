@@ -100,6 +100,10 @@
     overflow-y: scroll !important;
 }
 
+body {
+    overflow-y: scroll;
+}
+
 .layui-dialog {
     padding-top: 25px;
     padding-right: 20px;
@@ -113,4 +117,10 @@ div.tagsinput span.tag {
 
 div.tagsinput span.tag a {
     color: #5FB878 !important;
+}
+
+.layui-header *, #left-menu {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
 }

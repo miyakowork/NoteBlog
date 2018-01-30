@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import me.wuwenbin.modules.sql.annotation.GeneralType;
 import me.wuwenbin.modules.sql.annotation.SQLColumn;
 import me.wuwenbin.modules.sql.annotation.SQLTable;
+import me.wuwenbin.modules.sql.annotation.not.NotUpdate;
 import me.wuwenbin.modules.sql.annotation.support.PkGenType;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -33,6 +34,7 @@ public class Article implements Serializable {
 
     @GeneralType(PkGenType.DEFINITION)
     @SQLColumn(pk = true, routers = Article_Pk)
+    @NotUpdate
     private Long id;
     @NotEmpty
     private String title;

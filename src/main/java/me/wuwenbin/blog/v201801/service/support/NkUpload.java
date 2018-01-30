@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * created by Wuwenbin on 2018/1/17 at 11:58
  */
-public final class NK {
+public final class NkUpload {
 
     public static Map<String, Object> ok(String url) {
         return Maps.hashMap("code", "000", "message", "上传成功", "item", Maps.hashMap("url", url));

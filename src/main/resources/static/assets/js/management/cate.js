@@ -8,7 +8,7 @@ layui.use(['table', 'element'], function () {
         , url: BMY.url.prefix + '/cate/list'
         , page: true
         , limit: 10
-        , height: 'full-330'
+        , height: 'full'
         , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         , cols: [[
             {field: 'id', width: 80, title: 'ID', sort: true}

@@ -58,4 +58,9 @@ public interface ParamKey {
      * 统计代码
      */
     String STATISTICS_CODE = "statistics_code";
+
+    /**
+     * 信息板
+     */
+    String INFO_LABEL = "info_label";
 }

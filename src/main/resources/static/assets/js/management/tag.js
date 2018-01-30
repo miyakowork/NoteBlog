@@ -8,7 +8,7 @@ layui.use(['table', 'element'], function () {
         , url: BMY.url.prefix + '/tag/list'
         , page: true
         , limit: 10
-        , height: 'full-330'
+        , height: 'full'
         , cols: [[
             {field: 'id', width: 80, title: 'ID', sort: true}
             , {field: 'name', title: '标签名称', edit: 'text', sort: true}

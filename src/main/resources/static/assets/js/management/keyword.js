@@ -4,12 +4,12 @@ layui.use(['form', 'table', 'element'], function () {
         , form = layui.form;
     element.render();
 
-    table.render({
+    var keywordTable = table.render({
         elem: '#keyword-table'
         , url: BMY.url.prefix + '/keyword/list'
         , page: true
         , limit: 10
-        , height: 'full-330'
+        , height: 'full'
         , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         , cols: [[
             {field: 'id', width: 80, title: 'ID', sort: true}
@@ -64,6 +64,16 @@ layui.use(['form', 'table', 'element'], function () {
         BMY.ajax(BMY.url.prefix + "/keyword/edit/enable", {id: this.value, enable: obj.elem.checked}, function (json) {
             BMY.okMsgHandle(json);
             layer.tips('状态：' + ((obj.elem.checked) ? "正常" : "隐藏"), obj.othis);
+        });
+    });
+
+    table.on('sort(keyword)', function (obj) {
+        keywordTable.reload({
+            initSort: obj
+            , where: {
+                sort: obj.field
+                , order: obj.type
+            }
         });
     });
 

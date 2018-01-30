@@ -10,6 +10,20 @@ public interface SessionParam {
      */
     String LOGIN_USER = "session.login.user.key";
 
+    /**
+     * name
+     */
+    String COOKIE_NAME = "DA4DE6E44EEEC32C30C278A452C355B9";
+
+    /**
+     * cookie分隔符
+     */
+    String COOKIE_SPLIT = "__!!__";
+    /**
+     * 存放用户信息的cookie的密钥，用来加密解密用
+     */
+    String COOKIE_SECRET_KEY = "877A0812AA66E18B";
+
 
     /**
      * 前后台登录地址

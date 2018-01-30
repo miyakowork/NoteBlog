@@ -3,6 +3,10 @@ $(function () {
     vipspa.start({
         view: '#admin-body',
         router: {
+            'home': {
+                templateUrl: 'home',
+                controller: prefix + '/home.js'
+            },
             'blog': {
                 templateUrl: 'blog',
                 controller: prefix + '/blog.js'
@@ -51,8 +55,25 @@ $(function () {
                 templateUrl: 'settings',
                 controller: prefix + '/settings.js'
             },
+            'qrcode': {
+                templateUrl: 'settings/qrcode',
+                controller: prefix + '/qrcode.js'
+            },
+            'comment': {
+                templateUrl: 'comment',
+                controller: prefix + '/comment.js'
+            },
+            'noteblog': {
+                templateUrl: 'noteblog',
+                controller: prefix + '/noteblog.js'
+            },
+            'profile': {
+                templateUrl: 'profile',
+                controller: prefix + '/profile.js'
+            },
             'defaults': 'home' //默认路由
-        }
+        },
+        errorTemplateId: '#error'
     });
 
 });

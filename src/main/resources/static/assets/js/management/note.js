@@ -11,7 +11,7 @@ layui.use(['element', 'form'], function () {
 
     var post = function (data, msg) {
         data.field.content = editor.txt.html();
-        data.field.tagName = $("input[name=tagName]").val();
+        data.field.tagName = $("input[name=tagNames]").val();
         $.ajax({
             type: "post"
             , url: BMY.url.prefix + "/note/post"

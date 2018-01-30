@@ -14,7 +14,7 @@ import me.wuwenbin.blog.v201801.repository.TagReferRepository;
 import me.wuwenbin.blog.v201801.repository.TagRepository;
 import me.wuwenbin.blog.v201801.repository.UploadRepository;
 import me.wuwenbin.blog.v201801.service.ArticleService;
-import me.wuwenbin.blog.v201801.service.support.NK;
+import me.wuwenbin.blog.v201801.service.support.NkUpload;
 import me.wuwenbin.modules.utils.http.WebUtils;
 import me.wuwenbin.modules.utils.lang.LangUtils;
 import me.wuwenbin.modules.utils.util.function.TemplateSupplier;
@@ -174,15 +174,15 @@ public class ArticleServiceImpl implements ArticleService {
                 out.close();
                 String virtualPath = "/upload" + path + "/" + fileName;
                 uploadRepository.save(Upload.builder().diskPath(filePath).virtualPath(virtualPath).type(fileType).upload(now()).build());
-                return NK.ok(virtualPath);
+                return NkUpload.ok(virtualPath);
             } else {
-                return NK.err("文件创建失败！");
+                return NkUpload.err("文件创建失败！");
             }
         } catch (IOException e) {
             log.error("文件IO出错，出错信息：{}", e.getLocalizedMessage());
-            return NK.err("文件IO出错，出错信息：" + e.getLocalizedMessage());
+            return NkUpload.err("文件IO出错，出错信息：" + e.getLocalizedMessage());
         } catch (Exception e) {
-            return NK.err("上传出错，出错信息：" + e.getLocalizedMessage());
+            return NkUpload.err("上传出错，出错信息：" + e.getLocalizedMessage());
         }
     }
 

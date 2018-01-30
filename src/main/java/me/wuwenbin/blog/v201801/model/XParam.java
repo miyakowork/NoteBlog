@@ -20,7 +20,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @SQLTable("t_param")
-public class Param implements Serializable {
+public class XParam implements Serializable {
 
     @GeneralType
     @SQLColumn(pk = true)
@@ -29,7 +29,7 @@ public class Param implements Serializable {
     @NotEmpty
     private String name;
     @NotEmpty
-    private Object value;
+    private String value;
     private String remark;
 
     @SuppressWarnings("unchecked")

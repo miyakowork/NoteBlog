@@ -8,9 +8,9 @@ import org.springframework.validation.BindingResult;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 import static me.wuwenbin.modules.valdiation.assertion.Assert.check;
+import static org.springframework.util.StringUtils.isEmpty;
 
 /**
  * created by Wuwenbin on 2018/1/15 at 11:42
@@ -18,10 +18,11 @@ import static me.wuwenbin.modules.valdiation.assertion.Assert.check;
 public abstract class BaseController {
 
     //TODO:替换注释内容
-    protected static String basePath(HttpServletRequest request){
+    protected static String basePath(HttpServletRequest request) {
 //        return request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
         return "http://wx.wuwenbin.me/";
     }
+
     protected static <T> LayuiTable<T> layuiTable(Page<T> page) {
         return new LayuiTable<>(page.getTotalCount(), page.getTResult());
     }
@@ -32,6 +33,26 @@ public abstract class BaseController {
         } else {
             return check(template, result);
         }
+    }
+
+    protected boolean isAjax(HttpServletRequest request) {
+        String header = request.getHeader("X-Requested-With");
+        return "XMLHttpRequest".equalsIgnoreCase(header);
+    }
+
+    protected boolean isJson(HttpServletRequest request) {
+        String headerAccept = request.getHeader("Accept");
+        return !isEmpty(headerAccept) && headerAccept.contains("application/json");
+    }
+
+    protected boolean isRouter(HttpServletRequest request) {
+        String headerAccept = request.getHeader("Accept");
+        return !isEmpty(headerAccept) && headerAccept.contains("text/html") && !isJson(request) && isAjax(request) && isGet(request);
+    }
+
+    protected boolean isGet(HttpServletRequest request) {
+        String method = request.getMethod();
+        return "GET".equalsIgnoreCase(method);
     }
 
 }
