@@ -12,14 +12,16 @@
         <div class="layui-tab layui-tab-card">
             <div class="layui-tab-content start">
                 <fieldset class="layui-elem-field layui-field-title">
-                    <legend>发布文章 <a class="layui-btn layui-btn-sm layui-btn-primary" href="javascript:window.history.go(-1);">返回列表</a> </legend>
+                    <legend>发布文章 <a class="layui-btn layui-btn-sm layui-btn-primary"
+                                    href="javascript:window.history.go(-1);">返回列表</a></legend>
                 </fieldset>
                 <div class="layui-form">
                     <input name="id" type="hidden" th:value="${editArticle.id}" required lay-required>
                     <div class="layui-form-item">
                         <label class="layui-form-label">标题</label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" th:value="${editArticle.title}"
+                            <input type="text" name="title" required lay-verify="required" placeholder="请输入标题"
+                                   th:value="${editArticle.title}"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
@@ -34,9 +36,18 @@
                         </div>
                     </div>
                     <div class="layui-form-item">
+                        <label class="layui-form-label">博文封面</label>
+                        <div class="layui-upload-drag" id="coverImg">
+                            <p th:if="${editArticle.cover} eq null">点击上传博文封面，或将封面拖拽到此处</p>
+                            <p th:if="${editArticle.cover} ne null"><img th:src="${editArticle.cover}"
+                                                                         style="width: 130px;height: 90px;"></p>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
                         <label class="layui-form-label">内容</label>
                         <div class="layui-input-block" style="max-width: 1080px;">
-                            <textarea id="editor" placeholder="输入博文内容" autofocus style="visibility: hidden;"  th:field="${editArticle.content}"></textarea>
+                            <textarea id="editor" placeholder="输入博文内容" autofocus style="visibility: hidden;"
+                                      th:field="${editArticle.content}"></textarea>
                         </div>
                     </div>
                     <div class="layui-form-item layui-form-text">
@@ -49,22 +60,25 @@
                     <div class="layui-form-item tags">
                         <label class="layui-form-label">文章标签</label>
                         <div class="layui-input-block">
-                            <input type="text" name="tagName" id="tagName" class="layui-input" th:value="${articleTags}">
+                            <input type="text" name="tagName" id="tagName" class="layui-input"
+                                   th:value="${articleTags}">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-inline">
                             <label class="layui-form-label">评论功能</label>
                             <div class="layui-inline">
-                                <input type="checkbox" name="commented" value="true" lay-skin="switch" lay-text="开启|关闭"  th:checked="${editArticle.commented}"
+                                <input type="checkbox" name="commented" value="true" lay-skin="switch" lay-text="开启|关闭"
+                                       th:checked="${editArticle.commented}"
                                        title="评论">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">赞赏功能</label>
+                            <label class="layui-form-label">打赏功能</label>
                             <div class="layui-inline">
-                                <input type="checkbox" name="appreciable" value="true" lay-skin="switch" th:checked="${editArticle.appreciable}"
-                                       lay-text="开启|关闭" title="赞赏">
+                                <input type="checkbox" name="appreciable" value="true" lay-skin="switch"
+                                       th:checked="${editArticle.appreciable}"
+                                       lay-text="开启|关闭" title="打赏">
                             </div>
                         </div>
                     </div>

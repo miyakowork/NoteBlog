@@ -13,14 +13,16 @@
             <div class="layui-tab-content start">
 
                 <fieldset class="layui-elem-field layui-field-title">
-                    <legend>修改笔记 <a class="layui-btn layui-btn-sm layui-btn-primary" href="javascript:window.history.go(-1);">返回列表</a></legend>
+                    <legend>修改笔记 <a class="layui-btn layui-btn-sm layui-btn-primary"
+                                    href="javascript:window.history.go(-1);">返回列表</a></legend>
                 </fieldset>
                 <div class="layui-form">
                     <input type="hidden" name="id" th:value="${editNote.id}">
                     <div class="layui-form-item">
                         <label class="layui-form-label">标题</label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" th:value="${editNote.title}"
+                            <input type="text" name="title" required lay-verify="required" placeholder="请输入标题"
+                                   th:value="${editNote.title}"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>

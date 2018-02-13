@@ -1,0 +1,49 @@
+package me.wuwenbin.noteblog.v3.web.frontend;
+
+import me.wuwenbin.modules.jpa.support.Page;
+import me.wuwenbin.noteblog.v3.model.XParam;
+import me.wuwenbin.noteblog.v3.model.frontend.vo.SearchPageVo;
+import me.wuwenbin.noteblog.v3.repository.ParamRepository;
+import me.wuwenbin.noteblog.v3.service.SearchService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
+import java.util.Map;
+
+import static java.util.stream.Collectors.toMap;
+
+/**
+ * created by Wuwenbin on 2018/2/11 at 15:40
+ */
+@Controller
+@RequestMapping("/search")
+public class SearchController {
+
+    @Autowired
+    private SearchService searchService;
+    @Autowired
+    private ParamRepository paramRepository;
+
+    @GetMapping
+    public String index(Page<SearchPageVo> searchPage, String sp, Model model) {
+        searchPage = searchService.findPagination(searchPage, sp);
+        List<XParam> xParams = paramRepository.findAll();
+        Map<String, Object> settings = xParams.stream()
+                .filter(xParam -> !xParam.getName().equals("app_id") && !xParam.getName().equals("app_key"))
+                .collect(toMap(XParam::getName, XParam::getValue));
+        long articleCount = searchPage.getTResult().stream().filter(obj -> obj.getResType().equals("article")).count();
+        long noteCount = searchPage.getTResult().stream().filter(obj -> obj.getResType().equals("note")).count();
+        long fileCount = searchPage.getTResult().stream().filter(obj -> obj.getResType().equals("file")).count();
+        model.addAttribute("settings", settings);
+        model.addAttribute("page", searchPage);
+        model.addAttribute("ac", articleCount);
+        model.addAttribute("nc", noteCount);
+        model.addAttribute("fc", fileCount);
+        return "frontend/search";
+    }
+
+}

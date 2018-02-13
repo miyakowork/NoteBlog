@@ -14,11 +14,30 @@ spring:
       min-idle: 5
       max-active: 20
       max-wait: 60000
+      web-stat-filter:
+        enabled: false
+      stat-view-servlet:
+        enabled: false
     type: com.alibaba.druid.pool.DruidDataSource
   http:
     multipart:
       max-file-size: 10MB
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+      force-request: true
   resources:
     static-locations: file:f://upload/
+  mvc:
+    favicon:
+      enabled: false
 server:
   port: 8080
+  tomcat:
+    uri-encoding: utf-8
+    max-connections: 2000
+    max-threads:  2000
+logging:
+  file: F://blog_file.log
+  level: debug

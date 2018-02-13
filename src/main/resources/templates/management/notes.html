@@ -27,9 +27,14 @@
 </div>
 
 <script type="text/html" id="showTpl">
-    <input type="checkbox" name="show" value="{{d.id}}" lay-skin="switch" lay-text="显示|隐藏" lay-filter="show" {{ d.show == true ? 'checked' : '' }}>
+    <input type="checkbox" name="show" value="{{d.id}}" lay-skin="switch" lay-text="显示|隐藏" lay-filter="show" {{ d.show==
+           true ? 'checked' : '' }}>
 </script>
 
+<script type="text/html" id="topTpl">
+    <input type="checkbox" name="top" value="{{d.id}}" lay-skin="switch" lay-text="置顶|顺序" lay-filter="top" {{ d.top==
+           true ? 'checked' : '' }}>
+</script>
 
 <script type="text/html" id="noteBar">
     <a class="layui-btn layui-bg-blue layui-btn-sm" lay-event="detail"><i class="layui-icon">&#xe642;</i>编辑</a>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta th:replace="frontend/fragment/style"/>
+    <title th:text="${article.title}"></title>
+</head>
+<body class="animated fadeIn">
+<div id="article-app">
+    <bmy-header :params="params" :st="st" :title="title"></bmy-header>
+    <hr class="header-hr">
+    <bmy-block :quote="quote"></bmy-block>
+    <bmy-article-page :article="article" :author="author" :comments="comments.totalCount"
+                      :name="params.website_title" :tags="tags" :similars="similars"
+                      :alipay="params.alipay" :wechat="params.wechat_pay" :su="su">
+
+        <bmy-info slot="info" :info="showInfoLabel" :qq="params.qq_login" :su="su"></bmy-info>
+
+        <bmy-comment v-show="params.all_comment_open == 1 && article.commented" slot="post" :id="article.id"
+                     :su="su"></bmy-comment>
+
+        <bmy-search slot="search"></bmy-search>
+
+        <bmy-cate :cates="cates" slot="cate"></bmy-cate>
+
+        <bmy-similar :articles="articles" slot="similar"></bmy-similar>
+
+        <bmy-comment-list slot="comment" :comments="comments" :tips="params.comment_notice"
+                          :re="params.all_comment_open == 1 && article.commented"></bmy-comment-list>
+
+    </bmy-article-page>
+
+    <bmy-footer :words="params.footer_words"></bmy-footer>
+</div>
+<div th:replace="frontend/fragment/script"></div>
+<script src="/static/assets/js/frontend/svg.js"></script>
+<script th:inline="javascript">
+    layui.use(['layedit', 'laypage', 'code'], function () {
+        BMY.layedit = layui.layedit;
+        BMY.laypage = layui.laypage;
+        layui.code({
+            about: false
+        });
+        BMY.editor = BMY.layedit.build('comment-input', {
+            tool: ['face', '|', 'left', 'center', 'right', 'link', 'unlink']
+            , height: 150
+        });
+        BMY.laypage.render({
+            elem: $(".comment-page")
+            , count: [[${comments.totalCount}]]
+            , layout: ['prev', 'next']
+            , jump: function (obj, first) {
+                if (!first) {
+                    layer.msg('第 ' + obj.curr + ' 页');
+                    $.post("/article/comments", {
+                        id: BMY.articleVM.article.id
+                        , pageNo: obj.curr
+                    }, function (cs) {
+                        BMY.articleVM.comments = cs;
+                    })
+                }
+            }
+        });
+    });
+
+    BMY.articleVM = new Vue({
+        el: "#article-app",
+        data: {
+            params: [[${settings}]]
+            , article: [[${article}]]
+            , st: true
+            , title: [[${article.title}]]
+            , tags: [[${tags}]]
+            , author: [[${author}]]
+            , cates: [[${cateList}]]
+            , articles: [[${articles}]]
+            , similars: [[${similars}]]
+            , su: [[${su}]]
+            , showInfoLabel: false
+            , comments: [[${comments}]]
+            , quote: {
+                showText: true
+                , text:
+                '<span class="layui-breadcrumb">' +
+                '   <a href="/">网站首页</a>' +
+                '   <a href="/index">博客文章</a>' +
+                '   <a href="">' + [[${article.title}]] + '</a>' +
+                '   <a><cite>正文</cite></a>' +
+                '</span>'
+            }
+        },
+        mounted: function () {
+            BMY.stickyIt()
+            BMY.affix = new hcSticky("#affix-side", {
+                stickTo: '#blog-body'
+                , queries: {980: {disable: true}}
+                , top: 75
+                , onStart: function () {
+                    if (!BMY.sticky()) {
+                        BMY.affix.destroy();
+                    }
+                }
+            })
+        }
+    })
+</script>
+<script>
+    layui.use(['element'], function () {
+        var element = layui.element;
+    });
+
+</script>
+</body>
+</html>

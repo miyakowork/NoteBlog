@@ -8,21 +8,23 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>blogv20180113</name>
+    <name>NoteBlog</name>
     <description>笔记博客ver20180113.</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.9.RELEASE</version>
+        <version>1.5.10.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <template.version>1.10.18-SNAPSHOT</template.version>
+        <template.version>1.10.20-SNAPSHOT</template.version>
+        <hutool.version>4.0.5</hutool.version>
         <java.version>1.8</java.version>
+        <skipTests>true</skipTests>
     </properties>
 
     <dependencies>
@@ -37,10 +39,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -84,16 +82,12 @@
             <version>1.9.22</version>
         </dependency>
 
+
         <!--Hutool-->
         <dependency>
             <groupId>cn.hutool</groupId>
-            <artifactId>hutool-core</artifactId>
-            <version>4.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
             <artifactId>hutool-http</artifactId>
-            <version>4.0.1</version>
+            <version>${hutool.version}</version>
         </dependency>
 
         <!--template-->
@@ -135,6 +129,11 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>readhat</id>
+            <url>https://maven.repository.redhat.com/ga/</url>
+        </repository>
     </repositories>
+
 
 </project>

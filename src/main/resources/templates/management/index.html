@@ -5,6 +5,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/static/assets/img/favicon.png">
     <title>笔记博客后台管理</title>
     <link rel="stylesheet" href="/static/plugins/layui/css/layui.css">
     <link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.min.css">
@@ -13,11 +14,11 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo"><span><i class="layui-icon">&#xe628;</i>笔记博客</span> 后台管理</div>
+        <div class="layui-logo"><span><i class="fa fa-graduation-cap"></i>笔记博客</span> 后台管理</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left layui-hide layui-show-sm-inline-block">
             <li class="layui-nav-item"><a href="#home"><i class="fa fa-dashboard"></i> 控制台</a></li>
-            <li class="layui-nav-item"><a href="index.html" target="_blank"><i class="fa fa-home"></i> 前台首页</a></li>
+            <li class="layui-nav-item"><a href="/" target="_blank"><i class="fa fa-home"></i> 前台首页</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item layui-hide-xs layui-hide-sm layui-show-md-block">
@@ -52,9 +53,8 @@
                         <dd><a href="#settings"><i class="fa fa-cogs"></i> 偏好设置</a></dd>
                         <dd class="layui-hide-lg layui-hide-md layui-hide-sm layui-show-xs-block"><a href="#home"><i
                                 class="fa fa-dashboard"></i> 控制台</a></dd>
-                        <dd class="layui-hide-lg layui-hide-md layui-hide-sm layui-show-xs-block"><a href="index.html"
-                                                                                                     target="_blank"><i
-                                class="fa fa-home"></i> 前台首页</a></dd>
+                        <dd class="layui-hide-lg layui-hide-md layui-hide-sm layui-show-xs-block">
+                            <a href="/" target="_blank"><i class="fa fa-home"></i> 前台首页</a></dd>
                         <dd><a href=""><i class="fa fa-sign-out"></i> 退了</a></dd>
                     </dl>
                 </li>
@@ -70,6 +70,7 @@
                     <dl class="layui-nav-child">
                         <dd><a href="#blogs"><i class="fa fa-book"></i> 博文管理</a></dd>
                         <dd><a href="#notes"><i class="fa fa-sticky-note-o"></i> 笔记管理</a></dd>
+                        <dd><a href="#file"><i class="fa fa-file"></i> 分享管理</a></dd>
                         <dd><a href="#about"><i class="fa fa-trademark"></i> 关于内容</a></dd>
                     </dl>
                 </li>

@@ -27,15 +27,17 @@
 </div>
 
 <script type="text/html" id="topTpl">
-    <input type="checkbox" name="top" value="{{d.id}}" title="置顶" lay-filter="top" {{ d.top >0 ? 'checked' : '' }}>
+    <input type="checkbox" name="top" value="{{d.id}}" title="置顶" lay-filter="top" {{ d.top>0 ? 'checked' : '' }}>
 </script>
 
 <script type="text/html" id="appreciableTpl">
-    <input type="checkbox" name="appreciable" value="{{d.id}}" lay-skin="switch" lay-text="开启|关闭" lay-filter="appreciable" {{ d.appreciable == true ? 'checked' : '' }}>
+    <input type="checkbox" name="appreciable" value="{{d.id}}" lay-skin="switch" lay-text="开启|关闭"
+           lay-filter="appreciable" {{ d.appreciable== true ? 'checked' : '' }}>
 </script>
 
 <script type="text/html" id="commentedTpl">
-    <input type="checkbox" name="commented" value="{{d.id}}" lay-skin="switch" lay-text="开启|关闭" lay-filter="commented" {{ d.commented == true ? 'checked' : '' }}>
+    <input type="checkbox" name="commented" value="{{d.id}}" lay-skin="switch" lay-text="开启|关闭" lay-filter="commented"
+           {{ d.commented== true ? 'checked' : '' }}>
 </script>
 
 <script type="text/html" id="articleBar">

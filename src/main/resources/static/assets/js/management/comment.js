@@ -14,14 +14,8 @@ layui.use(['form', 'layer', 'table', 'element'], function () {
         , method: 'post'
         , cols: [[
             {field: 'nickname', title: '用户昵称'}
-            , {field: 'articleTitle', title: '文章标题'}
-            , {
-                field: 'comment', title: '评论内容', event: 'detail', templet: function (data) {
-                    var c = data.comment;
-                    c = c.substring(0, c.length < 10 ? c.length : 10);
-                    return c.length >= 10 ? c.concat("...") : c;
-                }
-            }
+            , {field: 'articleTitle', title: '文章标题', width: '20%'}
+            , {field: 'comment', title: '评论内容', event: 'detail', templet: '#comment', width: '40%'}
             , {
                 field: 'post', title: '发布时间', sort: true, templet: function (d) {
                     return BMY.dateFormatter(d.post);
@@ -48,7 +42,7 @@ layui.use(['form', 'layer', 'table', 'element'], function () {
         if (obj.event === 'detail') {
             layer.open({
                 type: 1
-                , offset: 'auto' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+                , offset: 'auto'
                 , id: 'layerDemo' + data.id //防止重复弹出
                 , content: '<div style="padding: 20px;">' + data.comment + '</div>'
                 , btnAlign: 'c' //按钮居中

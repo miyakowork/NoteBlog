@@ -14,7 +14,8 @@
                     <legend>关键字管理</legend>
                 </fieldset>
                 <div class="layui-btn-group keywordTable">
-                    <button class="layui-btn layui-btn-sm" data-type="addKeyword"><i class="layui-icon">&#xe654;</i> 新增关键字
+                    <button class="layui-btn layui-btn-sm" data-type="addKeyword"><i class="layui-icon">&#xe654;</i>
+                        新增关键字
                     </button>
                 </div>
                 <table class="layui-hide" id="keyword-table" lay-filter="keyword"></table>
@@ -44,5 +45,6 @@
 </script>
 
 <script type="text/html" id="enableTpl">
-    <input type="checkbox" name="show" value="{{d.id}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="enable" {{ d.enable == true ? 'checked' : '' }}>
+    <input type="checkbox" name="show" value="{{d.id}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="enable" {{
+           d.enable== true ? 'checked' : '' }}>
 </script>

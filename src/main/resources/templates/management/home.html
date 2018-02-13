@@ -88,7 +88,7 @@
                     <div class="layui-row">
                         <h4 style="font-weight: bolder;">标题：<span th:text="${latestArticle.title}"></span></h4>
                         <p class="layui-admin-mt10">发布时间：<span th:text="${latestArticle.post}"></span></p>
-                        <fieldset class="layui-elem-field layui-field-title">
+                        <fieldset class="layui-elem-field layui-field-title" style="word-break: break-all;">
                             <div class="layui-field-box" th:text="${latestArticle.summary}">
                             </div>
                         </fieldset>
@@ -98,7 +98,7 @@
                     <div class="layui-row">
                         <h4 style="font-weight: bolder;">标题：<span th:text="${latestNote.title}"></span></h4>
                         <p class="layui-admin-mt10">发布时间：<span th:text="${latestNote.post}"></span></p>
-                        <fieldset class="layui-elem-field layui-field-title">
+                        <fieldset class="layui-elem-field layui-field-title" style="word-break: break-all;">
                             <div class="layui-field-box" th:utext="${latestNote.content}">
                             </div>
                         </fieldset>
@@ -109,7 +109,7 @@
                         <h4 style="font-weight: bolder;">用户：<span th:text="${latestComment.nickname}"></span></h4>
                         <p class="layui-admin-mt10">发布时间：<span th:text="${latestComment.post}"></span></p>
                         <p class="layui-admin-mt10">文章标题：<span th:text="${latestComment.title}"></span></p>
-                        <fieldset class="layui-elem-field layui-field-title">
+                        <fieldset class="layui-elem-field layui-field-title" style="word-break: break-all;">
                             <div class="layui-field-box" th:text="${latestComment.comment}">
                             </div>
                         </fieldset>

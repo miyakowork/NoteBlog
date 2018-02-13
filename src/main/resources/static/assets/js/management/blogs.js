@@ -24,7 +24,7 @@ layui.use(['form', 'table', 'element'], function () {
             {type: 'numbers'}
             , {
                 field: 'title', title: '文章标题', sort: true, templet: function (d) {
-                    return '<a href="javascript:;" class="layui-blue">' + d.title + '</a>';
+                    return '<a href="/article/' + d.id + '" class="layui-blue" target="_blank">' + d.title + '</a>';
                 }
             }
             , {field: 'cateName', title: '文章分类'}
@@ -40,13 +40,12 @@ layui.use(['form', 'table', 'element'], function () {
             }
             , {field: 'approveCnt', title: '浏览数', width: 90}
             , {title: '评论', width: 90, align: 'center', toolbar: '#commentedTpl'}
-            , {title: '赞赏', width: 90, align: 'center', toolbar: '#appreciableTpl'}
+            , {title: '打赏', width: 90, align: 'center', toolbar: '#appreciableTpl'}
             , {field: 'top', title: '置顶', width: 110, templet: '#topTpl'}
             , {title: '操作', width: 200, align: 'center', toolbar: '#articleBar'}
         ]]
         , page: true
     });
-
     var $ = layui.$, active = {
         reload: function () {
             var titleSearch = $('#article-title-search');
@@ -96,7 +95,7 @@ layui.use(['form', 'table', 'element'], function () {
     form.on('switch(appreciable)', function (obj) {
         BMY.ajax(BMY.url.prefix + "/blog/edit/appreciable/" + this.value, {appreciable: obj.elem.checked}, function (json) {
             BMY.okMsgHandle(json);
-            layer.tips('赞赏：' + ((obj.elem.checked) ? "开启" : "关闭"), obj.othis);
+            layer.tips('打赏：' + ((obj.elem.checked) ? "开启" : "关闭"), obj.othis);
         });
     });
 

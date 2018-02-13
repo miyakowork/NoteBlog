@@ -1,14 +1,16 @@
 var editor;
-layui.use(['element', 'form', 'layer'], function () {
+layui.use(['element', 'form', 'layer', 'upload'], function () {
     var form = layui.form;
     var element = layui.element;
     var $ = layui.$;
+    var upload = layui.upload;
     element.render();
     form.render();
 
     var post = function (data, draft, msg) {
         data.field.draft = draft;
         data.field.content = editor.html();
+        data.field.cover = $("#coverImg").find("img").attr("src");
         $.ajax({
             type: "post"
             , url: BMY.url.prefix + "/blog/doEdit"
@@ -30,6 +32,20 @@ layui.use(['element', 'form', 'layer'], function () {
     form.on('submit(draftSubmit)', function (data) {
         post(data, true, "修改草稿成功！");
         return false;
+    });
+
+    upload.render({
+        elem: '#coverImg' //绑定元素
+        , url: BMY.url.prefix + '/profile/upload/' //上传接口
+        , done: function (res) {
+            if (res.code === 0) {
+                $("#coverImg").html('<p><img style="width: 144px;height: 90px;" src="' + res.data.src + '"></p>');
+            }
+            layer.msg(res.msg);
+        }
+        , error: function () {
+            layer.msg("上传失败！");
+        }
     });
 
 });

@@ -28,5 +28,6 @@
 
 
 <script type="text/html" id="enableTpl">
-    <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="正常|锁定" lay-filter="enable" {{ d.enable == true ? 'checked' : '' }}>
+    <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="正常|锁定" lay-filter="enable" {{
+           d.enable== true ? 'checked' : '' }}>
 </script>

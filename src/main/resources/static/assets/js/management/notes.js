@@ -33,6 +33,7 @@ layui.use(['form', 'table', 'element'], function () {
                 }
             }
             , {title: '状态', width: 90, align: 'center', toolbar: '#showTpl'}
+            , {field: 'top', title: '置顶', width: 110, templet: '#topTpl'}
             , {title: '操作', width: 200, align: 'center', toolbar: '#noteBar'}
         ]]
         , page: true
@@ -88,6 +89,14 @@ layui.use(['form', 'table', 'element'], function () {
         BMY.ajax(BMY.url.prefix + "/note/edit/show/" + this.value, {show: obj.elem.checked}, function (json) {
             BMY.okMsgHandle(json);
             layer.tips('显示：' + ((obj.elem.checked) ? "正常" : "隐藏"), obj.othis);
+        });
+    });
+
+
+    form.on('switch(top)', function (obj) {
+        BMY.ajax(BMY.url.prefix + "/note/edit/top/" + this.value, {top: obj.elem.checked}, function (json) {
+            BMY.okMsgHandle(json);
+            layer.tips(((obj.elem.checked) ? "已置顶" : "取消置顶"), obj.othis);
         });
     });
 

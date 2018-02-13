@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta th:replace="frontend/fragment/style"/>
+    <title th:text="${settings.website_title} + '- 笔记'"></title>
+</head>
+<body class="animated fadeIn">
+<div id="note-app">
+    <bmy-header :params="params" :note="current"></bmy-header>
+    <hr class="header-hr">
+    <bmy-block :quote="quote"></bmy-block>
+    <bmy-notes :sw="sw" :su="su"></bmy-notes>
+    <bmy-footer :words="params.footer_words"></bmy-footer>
+</div>
+<div th:replace="frontend/fragment/script"></div>
+<script src="/static/assets/js/frontend/svg.js"></script>
+<script th:inline="javascript">
+    BMY.noteVm = new Vue({
+        el: "#note-app",
+        data: {
+            params: [[${settings}]]
+            , su: [[${su}]]
+            , current: true
+            , quote: {
+                showText: true
+                , showNote: true
+                , showSearch: false
+                , searchCount: 0
+                , noteCount: [[${noteCount}]]
+                , text: [[${settings.index_top_words}]]
+            }
+            , sw: BMY.getParam("t") !== undefined ? decodeURIComponent(BMY.getParam("t")) : BMY.getParam("t")
+        },
+        mounted: function () {
+            BMY.stickyIt();
+            new hcSticky("#note-operate", {
+                stickTo: '#note-body'
+                , top: 75
+            })
+        }
+
+    })
+</script>
+<script>
+    layui.config({base: '/static/assets/js/frontend/'}).extend({
+        note: 'note'
+    });
+    layui.use(['laytpl', 'element', 'flow', 'note'], function () {
+        var flow = layui.flow;
+        var element = layui.element;
+        var laytpl = layui.laytpl;
+        var note = layui.note;
+
+        flow.load({
+            elem: '#timeline'
+            , done: function (page, next) {
+                return note($(".layui-note-cover"), page, next, laytpl);
+            }
+        });
+    });
+</script>
+</body>
+</html>

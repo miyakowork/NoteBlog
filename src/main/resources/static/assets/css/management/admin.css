@@ -124,3 +124,7 @@ div.tagsinput span.tag a {
     -ms-user-select: none;
     -webkit-user-select: none;
 }
+
+.layui-upload-drag {
+    padding: 5px;
+}

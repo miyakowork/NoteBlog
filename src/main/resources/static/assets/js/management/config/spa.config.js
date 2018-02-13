@@ -1,75 +1,80 @@
 $(function () {
-    var prefix = '/static/assets/js/management';
+    var static_prefix = '/static/assets/js/management';
+    var url_prefix = '/management/';
     vipspa.start({
         view: '#admin-body',
         router: {
             'home': {
-                templateUrl: 'home',
-                controller: prefix + '/home.js'
+                templateUrl: url_prefix + 'home',
+                controller: static_prefix + '/home.js'
             },
             'blog': {
-                templateUrl: 'blog',
-                controller: prefix + '/blog.js'
+                templateUrl: url_prefix + 'blog',
+                controller: static_prefix + '/blog.js'
             },
             'blog_edit': {
-                templateUrl: 'blog/edit',
-                controller: prefix + '/blog_edit.js'
+                templateUrl: url_prefix + 'blog/edit',
+                controller: static_prefix + '/blog_edit.js'
             },
             'blogs': {
-                templateUrl: 'blog/index',
-                controller: prefix + '/blogs.js'
+                templateUrl: url_prefix + 'blog/index',
+                controller: static_prefix + '/blogs.js'
             },
             'note': {
-                templateUrl: 'note',
-                controller: prefix + '/note.js'
+                templateUrl: url_prefix + 'note',
+                controller: static_prefix + '/note.js'
             },
             'notes': {
-                templateUrl: 'note/index',
-                controller: prefix + '/notes.js'
+                templateUrl: url_prefix + 'note/index',
+                controller: static_prefix + '/notes.js'
             },
             'note_edit': {
-                templateUrl: 'note/edit',
-                controller: prefix + '/note_edit.js'
+                templateUrl: url_prefix + 'note/edit',
+                controller: static_prefix + '/note_edit.js'
             },
             'cate': {
-                templateUrl: 'cate',
-                controller: prefix + '/cate.js'
+                templateUrl: url_prefix + 'cate',
+                controller: static_prefix + '/cate.js'
+            },
+            'file': {
+                templateUrl: url_prefix + 'file',
+                controller: static_prefix + '/file.js'
             },
             'tag': {
-                templateUrl: 'tag',
-                controller: prefix + '/tag.js'
+                templateUrl: url_prefix + 'tag',
+                controller: static_prefix + '/tag.js'
             },
             'about': {
-                templateUrl: 'about',
-                controller: prefix + '/about.js'
+                templateUrl: url_prefix + 'about',
+                controller: static_prefix + '/about.js'
             },
             'keyword': {
-                templateUrl: 'keyword',
-                controller: prefix + '/keyword.js'
+                templateUrl: url_prefix + 'keyword',
+                controller: static_prefix + '/keyword.js'
             },
             'users': {
-                templateUrl: 'user',
-                controller: prefix + '/user.js'
+                templateUrl: url_prefix + 'user',
+                controller: static_prefix + '/user.js'
             },
             'settings': {
-                templateUrl: 'settings',
-                controller: prefix + '/settings.js'
+                templateUrl: url_prefix + 'settings',
+                controller: static_prefix + '/settings.js'
             },
             'qrcode': {
-                templateUrl: 'settings/qrcode',
-                controller: prefix + '/qrcode.js'
+                templateUrl: url_prefix + 'settings/qrcode',
+                controller: static_prefix + '/qrcode.js'
             },
             'comment': {
-                templateUrl: 'comment',
-                controller: prefix + '/comment.js'
+                templateUrl: url_prefix + 'comment',
+                controller: static_prefix + '/comment.js'
             },
             'noteblog': {
-                templateUrl: 'noteblog',
-                controller: prefix + '/noteblog.js'
+                templateUrl: url_prefix + 'noteblog',
+                controller: static_prefix + '/noteblog.js'
             },
             'profile': {
-                templateUrl: 'profile',
-                controller: prefix + '/profile.js'
+                templateUrl: url_prefix + 'profile',
+                controller: static_prefix + '/profile.js'
             },
             'defaults': 'home' //默认路由
         },
