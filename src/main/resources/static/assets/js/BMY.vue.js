@@ -26,7 +26,7 @@ var template = {
     '                <a href="/note" :class="{ active: note }"><i class="layui-icon">&#xe609;</i> {{params.menu_note}}</a>' +
     '                <a href="/profile" :class="{ active: mine }"><i class="layui-icon">&#xe6af;</i> {{params.menu_mine}}</a>' +
     '                <a href="/search" :class="{ active: search }" target="_blank"><i class="layui-icon">&#xe615;</i> {{params.menu_search}}</a>' +
-    '                <a v-show="params.menu_link_show == 1" :href="params.menu_link_href" target="_blank"><i class="layui-icon">&#xe64e;</i> {{params.menu_link}}</a>' +
+    '                <a v-show="params.menu_link_show == 1" :href="params.menu_link_href" target="_blank"><i :class="params.menu_link_icon" style="font-size: 16px;"></i> {{params.menu_link}}</a>' +
     '            </div>' +
     '            <ul class="layui-nav layui-nav-tree layui-nav-side">' +
     '                <li class="layui-nav-item">' +
@@ -42,7 +42,7 @@ var template = {
     '                   <a href="/search" :class="{ \'layui-this\': search }"><i class="layui-icon">&#xe615;</i> {{params.menu_search}}</a>' +
     '                </li>' +
     '                <li class="layui-nav-item" v-if="params.menu_link_show == 1">' +
-    '                     <a :href="params.menu_link_href" target="_blank"><i :class="params.menu_link_icon" style="font-size: 18px;"></i> {{params.menu_link}}</a>' +
+    '                     <a :href="params.menu_link_href" target="_blank"><i :class="params.menu_link_icon" style="font-size: 15px;"></i> {{params.menu_link}}</a>' +
     '                </li>' +
     '            </ul>' +
     '        </div>' +
@@ -156,7 +156,7 @@ var template = {
     '                           <div class="layui-row">' +
     '                               <div class="layui-col-md6 layui-col-md-offset3 text-center blog-base-info">' +
     '                                   <span><i class="fa fa-clock-o"></i> {{postDate}}</span>' +
-    '                                   <span><i class="fa fa-user-o"></i> {{author}}<svg class="icon" aria-hidden="true"><use xlink:href="#icon-renzhengkaobei"></use></svg></span>' +
+    '                                   <span><i class="fa fa-user-o"></i> <span style="color: #FF5722;">{{author}}</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-renzhengkaobei"></use></svg></span>' +
     '                                   <span><i class="fa fa-comment-o"></i> {{comments}}</span>' +
     '                                   <span><i class="fa fa-eye"></i> {{article.views}}</span>' +
     '                               </div>' +
@@ -254,7 +254,7 @@ var template = {
     '                                   <img class="layui-circle" :src="c.avatar">' +
     '                               </div>' +
     '                               <div class="layui-col-md10 layui-col-xs9" style="border-bottom: 1px dotted #dbdbdb;padding-bottom: 10px;">' +
-    '                                   <i class="fa fa-user-o"></i> <span class="comment-user">{{c.nickname}}&nbsp;&nbsp;</span><small><i class="fa fa-location-arrow"></i> {{c.ipCnAddr}}网友</small><br/>' +
+    '                                   <i class="fa fa-user-o"></i> <span class="comment-user" :style="masterColor(c.id)">{{c.nickname}}&nbsp;<svg v-if="c.id==1" class="icon" aria-hidden="true"><use xlink:href="#icon-renzhengkaobei"></use></svg>&nbsp;&nbsp;</span><small><i class="fa fa-location-arrow"></i> {{c.ipCnAddr}}网友</small><br/>' +
     '                                   <i class="fa fa-clock-o"></i> <span class="comment-datetime">{{postDt(c.post)}}</span>' +
     '                               </div>' +
     '                               <div class="layui-row comment-block-content">' +
@@ -617,7 +617,10 @@ Vue.component('bmy-comment-list', {
         }
     }
     , methods: {
-        postDt: function (d) {
+        masterColor: function (id) {
+            return id === 1 ? "color:#FF5722;" : "";
+        }
+        , postDt: function (d) {
             return BMY.dateFormatter(d, "/");
         }
         , reback: function (name, content) {
