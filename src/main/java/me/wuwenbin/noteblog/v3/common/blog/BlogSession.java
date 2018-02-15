@@ -45,8 +45,7 @@ public class BlogSession implements Serializable {
 
     private static HttpServletRequest getRequest() {
         ServletRequestAttributes ra = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = ra.getRequest();
-        return request;
+        return ra.getRequest();
     }
 
     /**

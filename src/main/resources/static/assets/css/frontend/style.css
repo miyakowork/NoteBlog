@@ -637,6 +637,10 @@ p.blog-tags > span:hover {
     border-bottom: 1px solid #f1f1f1;
 }
 
+.content.detail {
+    word-wrap: break-word !important;
+}
+
 .content.detail * {
     max-width: 100% !important;
 }
