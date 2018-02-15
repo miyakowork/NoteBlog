@@ -68,9 +68,9 @@ public class SettingsController extends BaseController {
     @ResponseBody
     public Map<String, Object> upload(@RequestParam(value = "file", required = false) MultipartFile file, String payType) {
         if (file != null) {
-            return uploadService.uploadQrCode(file, payType);
+            return uploadService.upload(file, payType);
         } else {
-            return LayUpload.err("二维码不能为空！");
+            return LayUpload.err("上传文件为空！");
         }
     }
 }

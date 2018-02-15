@@ -42,7 +42,7 @@ public class UploadServiceImpl implements UploadService {
     private UserRepository userRepository;
 
     @Override
-    public Map<String, Object> uploadQrCode(MultipartFile qrCodeImg, String type) {
+    public Map<String, Object> upload(MultipartFile qrCodeImg, String type) {
         String path = FileType.IMAGE;
         String fileName = qrCodeImg.getOriginalFilename();
         //扩展名，包括点符号
@@ -64,7 +64,7 @@ public class UploadServiceImpl implements UploadService {
                 if ("wechat".equals(type)) {
                     paramRepository.updateValueByName(XParam.builder().name("wechat_pay").value(virtualPath).build());
                 }
-                return LayUpload.ok("上传二维码成功！", virtualPath);
+                return LayUpload.ok("上传成功！", virtualPath);
             } else {
                 return LayUpload.err("文件创建失败！");
             }

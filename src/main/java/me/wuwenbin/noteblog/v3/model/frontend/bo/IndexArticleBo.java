@@ -34,7 +34,6 @@ public class IndexArticleBo extends LayTableQuery {
     @QueryColumn(operator = EQ)
     private Long cateId;
     @Getter
-    @Setter
     @QueryColumn(column = "text_content")
     private String tagSearch;
 
@@ -47,6 +46,11 @@ public class IndexArticleBo extends LayTableQuery {
     public void setTextContent(String textContent) {
         textContent = Url.urlDecode(textContent, "UTF-8");
         this.textContent = Injection.stripSqlXSS(textContent);
+    }
+
+    public void setTagSearch(String tagSearch) {
+        tagSearch = Url.urlDecode(tagSearch, "UTF-8");
+        this.tagSearch = tagSearch;
     }
 
     @Override

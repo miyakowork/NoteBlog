@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public interface UploadService {
 
-    Map<String, Object> uploadQrCode(MultipartFile qrCodeImg, String type);
+    Map<String, Object> upload(MultipartFile qrCodeImg, String type);
 
     Map<String, Object> uploadAvatar(MultipartFile avatar, String username);
 }

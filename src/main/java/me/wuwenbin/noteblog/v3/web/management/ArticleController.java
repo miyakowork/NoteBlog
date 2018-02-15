@@ -13,6 +13,8 @@ import me.wuwenbin.noteblog.v3.repository.ArticleRepository;
 import me.wuwenbin.noteblog.v3.repository.CateRepository;
 import me.wuwenbin.noteblog.v3.repository.TagReferRepository;
 import me.wuwenbin.noteblog.v3.service.ArticleService;
+import me.wuwenbin.noteblog.v3.service.UploadService;
+import me.wuwenbin.noteblog.v3.service.support.LayUpload;
 import me.wuwenbin.noteblog.v3.service.support.NkUpload;
 import me.wuwenbin.noteblog.v3.web.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +51,8 @@ public class ArticleController extends BaseController {
     private ArticleRepository articleRepository;
     @Autowired
     private TagReferRepository tagReferRepository;
+    @Autowired
+    private UploadService uploadService;
 
     @GetMapping
     public String blog(Model model) {
@@ -140,6 +144,16 @@ public class ArticleController extends BaseController {
             NkUpload.err("数据为空，上传失败！");
         }
         return articleService.upload(file);
+    }
+
+    @PostMapping("/upload/cover")
+    @ResponseBody
+    public Map<String, Object> upload(@RequestParam(value = "file", required = false) MultipartFile file, String type) {
+        if (file != null) {
+            return uploadService.upload(file, type);
+        } else {
+            return LayUpload.err("上传文件为空！");
+        }
     }
 
 }

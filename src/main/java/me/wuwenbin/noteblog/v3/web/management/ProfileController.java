@@ -15,7 +15,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -27,8 +26,6 @@ public class ProfileController {
 
     @Autowired
     private BlogContext blogContext;
-    @Autowired
-    private HttpServletRequest request;
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -69,7 +66,7 @@ public class ProfileController {
                 return LayUpload.err("非法操作！");
             }
         } else {
-            return LayUpload.err("二维码不能为空！");
+            return LayUpload.err("上传文件为空！");
         }
     }
 }

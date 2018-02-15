@@ -54,7 +54,7 @@ var template = {
     '            <template v-if="quote.showBlog">博文统计：共【<span class="sum-font">{{quote.blogCount}}</span>】篇；</template>' +
     '            <template v-if="quote.showNote">笔记统计：共【<span class="sum-font">{{quote.noteCount}}</span>】条；</template>' +
     '            <template v-if="quote.showFile">资源统计：共【<span class="sum-font">{{quote.fileCount}}</span>】条；</template>' +
-    '            <template v-if="quote.showSearch">搜索统计：共【<span class="sum-font">{{quote.searchCount}}</span>】个记录；</template>' +
+    '            <template v-if="quote.showSearch">搜索统计：共【<span class="sum-font">{{quote.searchCount}}</span>】个；</template>' +
     '            <span v-if="quote.showText" v-html="quote.text"></span>' +
     '            <div v-show="quote.showClock" class="clock layui-show-md-inline-block layui-show-lg-inline-block layui-hide-xs layui-hide-sm">' +
     '                <span class="clock-font">当前日期</span>：<span id="current-datetime"></span>' +

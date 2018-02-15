@@ -20,10 +20,8 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">logo文本</label>
                             <div class="layui-input-inline" style="width: 350px;">
-                                <input type="text" name="website_logo_words" required lay-verify="required"
-                                       placeholder="请输入文本"
-                                       th:value="${website_logo_words}"
-                                       autocomplete="off" class="layui-input"></div>
+                                <input type="text" name="website_logo_words" placeholder="请输入文本"
+                                       th:value="${website_logo_words}" autocomplete="off" class="layui-input"></div>
                         </div>
                         <div class="layui-inline">
                             <button class="layui-btn-sm layui-btn" lay-submit lay-filter="settings">提交</button>
@@ -34,10 +32,8 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">网站标题</label>
                             <div class="layui-input-inline" style="width: 350px;">
-                                <input type="text" name="website_title" required lay-verify="required"
-                                       placeholder="请输入文本"
-                                       th:value="${website_title}"
-                                       autocomplete="off" class="layui-input"></div>
+                                <input type="text" name="website_title" placeholder="请输入文本"
+                                       th:value="${website_title}" `autocomplete="off" class="layui-input"></div>
                         </div>
                         <div class="layui-inline">
                             <button class="layui-btn-sm layui-btn" lay-submit lay-filter="settings">提交</button>
@@ -48,7 +44,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">页眉文本</label>
                             <div class="layui-input-inline" style="width: 550px;">
-                                <input type="text" name="index_top_words" required lay-verify="required"
+                                <input type="text" name="index_top_words"
                                        placeholder="请输入文本"
                                        th:value="${index_top_words}"
                                        autocomplete="off" class="layui-input"></div>
@@ -62,7 +58,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">页脚文本</label>
                             <div class="layui-input-inline" style="width: 550px;">
-                                <input type="text" name="footer_words" required lay-verify="required"
+                                <input type="text" name="footer_words"
                                        placeholder="请输入文本"
                                        th:value="${footer_words}"
                                        autocomplete="off" class="layui-input"></div>
@@ -80,7 +76,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">信息板内容</label>
                             <div class="layui-input-inline" style="width: 600px;">
-                                <textarea name="infoLabel" required lay-verify="required" placeholder="请输入信息板html内容"
+                                <textarea name="infoLabel" placeholder="请输入信息板html内容"
                                           class="layui-textarea" th:utext="${info_label}"
                                           style="height: 250px;"></textarea>
                                 <p class="layui-admin-mt10" style="color: #999;">总字符数最多不超过500</p>
@@ -111,10 +107,8 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">评论区置顶公告信息</label>
                                 <div class="layui-input-inline" style="width: 550px;">
-                                    <input type="text" name="comment_notice" required lay-verify="required"
-                                           placeholder="请输入文本"
-                                           th:value="${comment_notice}"
-                                           autocomplete="off" class="layui-input"></div>
+                                    <input type="text" name="comment_notice" placeholder="请输入文本"
+                                           th:value="${comment_notice}" autocomplete="off" class="layui-input"></div>
                             </div>
                             <div class="layui-inline">
                                 <button class="layui-btn-sm layui-btn" lay-submit lay-filter="settings">提交</button>
@@ -142,19 +136,16 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">额外链接</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="linkIcon" required lay-verify="required"
-                                           th:value="${menu_link_icon}"
-                                           placeholder="font-awesome字体图标"
-                                           autocomplete="off" class="layui-input">
+                                    <input type="text" name="linkIcon" th:value="${menu_link_icon}"
+                                           placeholder="font-awesome字体图标" autocomplete="off" class="layui-input">
                                 </div>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="linkText" required lay-verify="required"
-                                           placeholder="请输入文本" th:value="${menu_link}"
+                                    <input type="text" name="linkText" placeholder="请输入文本" th:value="${menu_link}"
                                            autocomplete="off" class="layui-input">
                                 </div>
                                 <div class="layui-input-inline" style="width: 400px;">
-                                    <input type="text" name="linkUrl" required lay-verify="required"
-                                           placeholder="请输入链接url" th:value="${menu_link_href}"
+                                    <input type="text" name="linkUrl" placeholder="请输入链接url"
+                                           th:value="${menu_link_href}"
                                            autocomplete="off" class="layui-input">
                                 </div>
                             </div>
@@ -167,10 +158,8 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">主页名称</label>
                                 <div class="layui-input-inline" style="width: 250px;">
-                                    <input type="text" name="menu_home" required lay-verify="required"
-                                           placeholder="请输入文本"
-                                           th:value="${menu_home}"
-                                           autocomplete="off" class="layui-input"></div>
+                                    <input type="text" name="menu_home" placeholder="请输入文本"
+                                           th:value="${menu_home}" autocomplete="off" class="layui-input"></div>
                             </div>
                             <div class="layui-inline">
                                 <button class="layui-btn-sm layui-btn" lay-submit lay-filter="settings">提交</button>
@@ -181,10 +170,8 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">笔记名称</label>
                                 <div class="layui-input-inline" style="width: 250px;">
-                                    <input type="text" name="menu_note" required lay-verify="required"
-                                           placeholder="请输入文本"
-                                           th:value="${menu_note}"
-                                           autocomplete="off" class="layui-input"></div>
+                                    <input type="text" name="menu_note" placeholder="请输入文本"
+                                           th:value="${menu_note}" autocomplete="off" class="layui-input"></div>
                             </div>
                             <div class="layui-inline">
                                 <button class="layui-btn-sm layui-btn" lay-submit lay-filter="settings">提交</button>
@@ -195,10 +182,8 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">关于名称</label>
                                 <div class="layui-input-inline" style="width: 250px;">
-                                    <input type="text" name="menu_mine" required lay-verify="required"
-                                           placeholder="请输入文本"
-                                           th:value="${menu_mine}"
-                                           autocomplete="off" class="layui-input"></div>
+                                    <input type="text" name="menu_mine" placeholder="请输入文本"
+                                           th:value="${menu_mine}" autocomplete="off" class="layui-input"></div>
                             </div>
                             <div class="layui-inline">
                                 <button class="layui-btn-sm layui-btn" lay-submit lay-filter="settings">提交</button>
@@ -209,10 +194,8 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">搜索名称</label>
                                 <div class="layui-input-inline" style="width: 250px;">
-                                    <input type="text" name="menu_search" required lay-verify="required"
-                                           placeholder="请输入文本"
-                                           th:value="${menu_search}"
-                                           autocomplete="off" class="layui-input"></div>
+                                    <input type="text" name="menu_search" placeholder="请输入文本"
+                                           th:value="${menu_search}" autocomplete="off" class="layui-input"></div>
                             </div>
                             <div class="layui-inline">
                                 <button class="layui-btn-sm layui-btn" lay-submit lay-filter="settings">提交</button>
@@ -238,10 +221,8 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">APP ID</label>
                                 <div class="layui-input-inline" style="width: 250px;">
-                                    <input type="text" name="app_id" required lay-verify="required"
-                                           placeholder="请输入AppId"
-                                           th:value="${app_id}"
-                                           autocomplete="off" class="layui-input"></div>
+                                    <input type="text" name="app_id" placeholder="请输入AppId"
+                                           th:value="${app_id}" autocomplete="off" class="layui-input"></div>
                             </div>
                             <div class="layui-inline">
                                 <button class="layui-btn-sm layui-btn" lay-submit lay-filter="settings">提交</button>
@@ -252,10 +233,8 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">APP Key</label>
                                 <div class="layui-input-inline" style="width: 450px;">
-                                    <input type="text" name="app_key" required lay-verify="required"
-                                           placeholder="请输入AppKey"
-                                           th:value="${app_key}"
-                                           autocomplete="off" class="layui-input"></div>
+                                    <input type="text" name="app_key" placeholder="请输入AppKey"
+                                           th:value="${app_key}" autocomplete="off" class="layui-input"></div>
                             </div>
                             <div class="layui-inline">
                                 <button class="layui-btn-sm layui-btn" lay-submit lay-filter="settings">提交</button>
@@ -266,8 +245,8 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">统计代码(暂不可用)</label>
                                 <div class="layui-input-inline" style="width: 550px;">
-                                    <textarea name="statisticsCode" required lay-verify="required" placeholder="请输入"
-                                              class="layui-textarea" th:utext="${statistics_code}"></textarea>
+                                    <textarea name="statisticsCode" placeholder="请输入" class="layui-textarea"
+                                              th:utext="${statistics_code}"></textarea>
                                 </div>
                                 <div class="layui-inline">
                                     <button class="layui-btn-sm layui-btn" lay-submit lay-filter="statistics">提交

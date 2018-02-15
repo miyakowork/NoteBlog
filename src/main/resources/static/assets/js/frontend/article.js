@@ -81,5 +81,6 @@ function nextPage(page, next, tpl) {
 
 function searchTag(span) {
     var s = $(span).text();
+    s = s.substring(1);
     location.href = "/index?s=" + s + "&t=" + s
 }
