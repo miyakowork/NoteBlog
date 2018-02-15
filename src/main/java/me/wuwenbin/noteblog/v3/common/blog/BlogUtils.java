@@ -25,7 +25,8 @@ public class BlogUtils {
         }
         return Maps.hashMap("id", user.getId()
                 , "nickname", user.getNickname()
-                , "avatar", user.getAvatar());
+                , "avatar", user.getAvatar()
+                , "dri", user.getDefaultRoleId());
     }
 
     public static IpInfo getIpInfo(String ip) {

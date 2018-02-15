@@ -7,7 +7,7 @@ spring:
     druid:
       db-type: mysql
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/blogv20180108?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
+      url: jdbc:mysql://127.0.0.1:3306/noteblogv3?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
       username: root
       password: 12345678
       initial-size: 5
@@ -32,12 +32,11 @@ spring:
   mvc:
     favicon:
       enabled: false
+  application:
+    name: noteblogv3
 server:
   port: 8080
   tomcat:
     uri-encoding: utf-8
     max-connections: 2000
     max-threads:  2000
-logging:
-  file: F://blog_file.log
-  level: debug

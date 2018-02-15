@@ -19,8 +19,8 @@ public abstract class BaseController {
 
     //TODO:替换注释内容
     protected static String basePath(HttpServletRequest request) {
-//        return request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
-        return "http://wx.wuwenbin.me/";
+        return request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
+//        return "http://wuwenbin.me/";
     }
 
     protected static <T> LayuiTable<T> layuiTable(Page<T> page) {

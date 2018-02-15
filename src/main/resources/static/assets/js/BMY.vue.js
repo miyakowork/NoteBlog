@@ -99,6 +99,7 @@ var template = {
     '               <a href="/token/logout" style="font-size: 14px;">' +
     '                   <img id="logout" @mouseover="tipsOver()" @mouseout="tipsOut()" style="height: 45px;width: 45px;" class="layui-circle" :src="su != null ?su.avatar:\'\'">&nbsp;&nbsp;欢迎你，{{su.nickname}}！' +
     '               </a>' +
+    '               &nbsp;<a v-if="su !=null && su.dri == 1" href="/management/index" target="_blank" class="layui-text">后台管理 <i class="fa fa-angle-double-right"></i> </a>' +
     '           </p>' +
     '       </div>' +
     '   </div>' +
