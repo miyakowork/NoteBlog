@@ -668,6 +668,11 @@ p.blog-tags > span:hover {
     color: #009688 !important;
 }
 
+#timeline pre.layui-code code {
+    font-family: "Trebuchet MS", Consolas, Verdana, Arial, serif;
+    font-size: 14px;
+}
+
 .layui-code.prettyprint {
     font-family: "Trebuchet MS", Consolas, Verdana, Arial, serif;
     font-size: 15px;
