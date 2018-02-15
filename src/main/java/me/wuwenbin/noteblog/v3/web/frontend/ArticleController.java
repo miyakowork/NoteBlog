@@ -40,6 +40,10 @@ public class ArticleController {
 
     @GetMapping("/{id}")
     public String index(Model model, @PathVariable("id") Long id, Page<CommentVo> commentVoPage, CommentListBo commentListBo) {
+        try {
+            articleRepository.updateViewsById(id);
+        } catch (Exception ignore) {
+        }
         List<XParam> xParams = paramRepository.findAll();
         Map<String, Object> settings = xParams.stream()
                 .filter(xParam -> !xParam.getName().equals("app_id") && !xParam.getName().equals("app_key"))

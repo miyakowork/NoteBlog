@@ -57,5 +57,8 @@ public interface ArticleRepository extends IPageAndSortRepository<Article, Long>
     List<Map<String, Object>> findSimilarArticles(long cateId, int limit);
 
     @SQL("UPDATE t_article SET approve_cnt = approve_cnt + 1 WHERE id = ?")
-    int updateApproveCntById(long articleId);
+    int updateApproveCntById(long articleId) throws Exception;
+
+    @SQL("UPDATE t_article SET views = views + 1 WHERE id = ?")
+    int updateViewsById(long articleId) throws Exception;
 }
