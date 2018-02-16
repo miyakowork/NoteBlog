@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
-    <property name="LOG_DIR" value="noteblogv3/"/>
+    <property name="LOG_DIR" value="noteblogv3"/>
     <property name="APP_NAME" value="noteblogv3"/>
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -12,6 +12,7 @@
             <charset>UTF-8</charset>
         </encoder>
     </appender>
+
     <appender name="FILE_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!--如果只是想要 Info 级别的日志，只是过滤 info 还是会输出 Error 日志，因为 Error 的级别高， 所以我们使用下面的策略，可以避免输出 Error 的日志-->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -22,6 +23,8 @@
             <!--没有匹配到就允许-->
             <onMismatch>ACCEPT</onMismatch>
         </filter>
+        <!--日志名称，如果没有File 属性，那么只会使用FileNamePattern的文件路径规则如果同时有<File>和<FileNamePattern>，那么当天日志是<File>，明天会自动把今天的日志改名为今天的日期。即，<File> 的日志都是当天的。-->
+        <File>${LOG_DIR}/info.${APP_NAME}.log</File>
         <!--滚动策略，按照时间滚动 TimeBasedRollingPolicy-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--文件路径,定义了日志的切分方式——把每一天的日志归档到一个文件中,以防止日志填满整个磁盘空间-->
@@ -32,7 +35,7 @@
             <!--<totalSizeCap>1GB</totalSizeCap>-->
         </rollingPolicy>
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <maxFileSize>100MB</maxFileSize>
+            <maxFileSize>256MB</maxFileSize>
         </triggeringPolicy>
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</pattern>
@@ -45,6 +48,8 @@
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>Error</level>
         </filter>
+        <!--日志名称，如果没有File 属性，那么只会使用FileNamePattern的文件路径规则如果同时有<File>和<FileNamePattern>，那么当天日志是<File>，明天会自动把今天的日志改名为今天的日期。即，<File> 的日志都是当天的。-->
+        <File>${LOG_DIR}/error.${APP_NAME}.log</File>
         <!--滚动策略，按照时间滚动 TimeBasedRollingPolicy-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--文件路径,定义了日志的切分方式——把每一天的日志归档到一个文件中,以防止日志填满整个磁盘空间-->
@@ -53,7 +58,7 @@
             <maxHistory>90</maxHistory>
         </rollingPolicy>
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <maxFileSize>100MB</maxFileSize>
+            <maxFileSize>256MB</maxFileSize>
         </triggeringPolicy>
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</pattern>
