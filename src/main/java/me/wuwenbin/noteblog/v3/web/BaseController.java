@@ -1,5 +1,6 @@
 package me.wuwenbin.noteblog.v3.web;
 
+import lombok.extern.slf4j.Slf4j;
 import me.wuwenbin.modules.jpa.support.Page;
 import me.wuwenbin.modules.pagination.model.layui.LayuiTable;
 import me.wuwenbin.modules.utils.http.R;
@@ -15,11 +16,14 @@ import static org.springframework.util.StringUtils.isEmpty;
 /**
  * created by Wuwenbin on 2018/1/15 at 11:42
  */
+@Slf4j
 public abstract class BaseController {
 
     //TODO:替换注释内容
     protected static String basePath(HttpServletRequest request) {
-        return request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
+        String bathPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
+        log.info("当前域名：[{}]", bathPath);
+        return bathPath;
 //        return "http://wuwenbin.me/";
     }
 

@@ -37,7 +37,7 @@ public class BlogUtils {
 
     public static String getIpCnInfo(IpInfo ipInfo) {
         String temp = ipInfo.getData().getCountry() + ipInfo.getData().getRegion() + ipInfo.getData().getCity();
-        if (!ipInfo.getData().getCounty().toLowerCase().contains("X")) {
+        if (!ipInfo.getData().getCounty().toLowerCase().contains("x")) {
             return temp + ipInfo.getData().getCounty();
         } else {
             return temp;
