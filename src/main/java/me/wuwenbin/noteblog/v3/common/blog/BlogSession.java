@@ -43,8 +43,7 @@ public class BlogSession implements Serializable {
     private boolean expired = FALSE;
     private User sessionUser;
 
-    //    public static final long DEFAULT_TIMEOUT_MILLS = 30 * 60 * 1000;
-    public static final long DEFAULT_TIMEOUT_MILLS = 10 * 1000;
+    public static final long DEFAULT_TIMEOUT_MILLS = 30 * 60 * 1000;
 
     private static HttpServletRequest getRequest() {
         ServletRequestAttributes ra = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
