@@ -28,7 +28,7 @@ public class BlogContext extends ConcurrentHashMap<String, BlogSession> {
         if (cookie != null) {
             session.setId(cookie.getValue());
         }
-        CookieUtils.setCookie(response, SessionParam.SESSION_ID_COOKIE, session.getId(), 24 * 60 * 60);
+        CookieUtils.setCookie(response, SessionParam.SESSION_ID_COOKIE, session.getId(), -1);
         put(session.getId(), session);
     }
 

@@ -19,13 +19,15 @@ layui.use(['element', 'form', 'layer', 'upload'], function () {
             , data: data.field
             , success: function (json) {
                 BMY.okMsgHandle(json, msg);
+                if (json.code === BMY.status.ok) {
+                    location.hash = vipspa.stringifyParam("blogs", {});
+                }
             }
         });
     };
     //监听提交
     form.on('submit(postSubmit)', function (data) {
         post(data, false, "发布博文成功！");
-        location.hash = vipspa.stringifyParam("blogs", {});
         return false;
     });
 
