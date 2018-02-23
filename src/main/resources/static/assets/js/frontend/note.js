@@ -41,6 +41,7 @@ function nextShare(cover, page, next, tpl) { //执行下一页的回调
                 BMY.noteVm.quote.showSearch = true;
                 BMY.noteVm.quote.searchCount = json.data.totalCount;
             }
+            $(window).resize();
         }
     });
 }

@@ -75,7 +75,9 @@ function nextPage(page, next, tpl) {
                 BMY.indexVM.quote.showSearch = true;
                 BMY.indexVM.quote.searchCount = json.data.page.totalCount;
             }
+            $(window).resize();
         }
+
     });
 }
 

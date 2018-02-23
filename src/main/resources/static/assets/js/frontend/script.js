@@ -60,12 +60,12 @@ $(function ($) {
                 width: "0"
             }, 200)
         }
-    })
+    });
 
     bottomNav();
     $(window).resize(function () {
         bottomNav();
-    })
+    });
 
 });
 
