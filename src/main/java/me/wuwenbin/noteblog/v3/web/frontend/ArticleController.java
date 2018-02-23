@@ -3,6 +3,7 @@ package me.wuwenbin.noteblog.v3.web.frontend;
 import me.wuwenbin.modules.jpa.support.Page;
 import me.wuwenbin.modules.utils.http.R;
 import me.wuwenbin.modules.utils.web.Controllers;
+import me.wuwenbin.noteblog.v3.common.blog.BlogUtils;
 import me.wuwenbin.noteblog.v3.model.Article;
 import me.wuwenbin.noteblog.v3.model.XParam;
 import me.wuwenbin.noteblog.v3.model.frontend.bo.CommentListBo;
@@ -15,8 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-
-import static java.util.stream.Collectors.toMap;
 
 /**
  * created by Wuwenbin on 2018/2/6 at 14:28
@@ -45,9 +44,7 @@ public class ArticleController {
         } catch (Exception ignore) {
         }
         List<XParam> xParams = paramRepository.findAll();
-        Map<String, Object> settings = xParams.stream()
-                .filter(xParam -> !xParam.getName().equals("app_id") && !xParam.getName().equals("app_key"))
-                .collect(toMap(XParam::getName, XParam::getValue));
+        Map<String, Object> settings = BlogUtils.settingMap(xParams);
         Article article = articleRepository.findOne(id);
         model.addAttribute("settings", settings);
         model.addAttribute("cateList", cateRepository.findAll());

@@ -87,7 +87,7 @@ public class BlogSession implements Serializable {
             }
             LocalDateTime expire = getExpireTimestamp();
             boolean isExpire = LocalDateTime.now().isAfter(lastAccessTime.plusSeconds(timeout / 1000));
-            log.info("当前时间：{}，最后访问时间：{}，过期时间：{}，session是否过期：{}", LocalDateTime.now(), lastAccessTime, expire, isExpire);
+            log.info("当前时间：{}，最后访问时间：{}，过期时间：{}，session 是否过期：{}", LocalDateTime.now(), lastAccessTime, expire, isExpire);
             if (isExpire) {
                 this.expired = true;
             }

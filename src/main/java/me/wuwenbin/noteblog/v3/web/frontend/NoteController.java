@@ -3,6 +3,7 @@ package me.wuwenbin.noteblog.v3.web.frontend;
 import lombok.extern.slf4j.Slf4j;
 import me.wuwenbin.modules.jpa.support.Page;
 import me.wuwenbin.modules.utils.http.R;
+import me.wuwenbin.noteblog.v3.common.blog.BlogUtils;
 import me.wuwenbin.noteblog.v3.model.Note;
 import me.wuwenbin.noteblog.v3.model.XParam;
 import me.wuwenbin.noteblog.v3.model.frontend.bo.NoteQueryBo;
@@ -18,8 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Map;
-
-import static java.util.stream.Collectors.toMap;
 
 /**
  * created by Wuwenbin on 2018/2/9 at 14:14
@@ -37,9 +36,7 @@ public class NoteController {
     @GetMapping
     public String index(Model model) {
         List<XParam> xParams = paramRepository.findAll();
-        Map<String, Object> settings = xParams.stream()
-                .filter(xParam -> !xParam.getName().equals("app_id") && !xParam.getName().equals("app_key"))
-                .collect(toMap(XParam::getName, XParam::getValue));
+        Map<String, Object> settings = BlogUtils.settingMap(xParams);
         model.addAttribute("settings", settings);
         model.addAttribute("noteCount", noteRepository.count());
         return "frontend/note";

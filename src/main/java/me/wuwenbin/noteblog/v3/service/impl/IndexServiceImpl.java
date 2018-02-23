@@ -2,6 +2,7 @@ package me.wuwenbin.noteblog.v3.service.impl;
 
 import me.wuwenbin.modules.jpa.support.Page;
 import me.wuwenbin.modules.pagination.query.model.layui.LayTableQuery;
+import me.wuwenbin.noteblog.v3.common.blog.BlogUtils;
 import me.wuwenbin.noteblog.v3.model.Cate;
 import me.wuwenbin.noteblog.v3.model.Tag;
 import me.wuwenbin.noteblog.v3.model.XParam;
@@ -42,9 +43,7 @@ public class IndexServiceImpl implements IndexService {
     @Override
     public IndexVo findIndexVo() {
         List<XParam> xParams = paramRepository.findAll();
-        Map<String, Object> settings = xParams.stream()
-                .filter(xParam -> !xParam.getName().equals("app_id") && !xParam.getName().equals("app_key"))
-                .collect(toMap(XParam::getName, XParam::getValue));
+        Map<String, Object> settings = BlogUtils.settingMap(xParams);
         long blogCount = articleRepository.count();
         List<Cate> cateList = cateRepository.findAll();
         List<Map<String, Object>> randomArticles = articleRepository.findRandomArticles(10);

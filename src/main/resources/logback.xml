@@ -24,19 +24,23 @@
             <onMismatch>ACCEPT</onMismatch>
         </filter>
         <!--日志名称，如果没有File 属性，那么只会使用FileNamePattern的文件路径规则如果同时有<File>和<FileNamePattern>，那么当天日志是<File>，明天会自动把今天的日志改名为今天的日期。即，<File> 的日志都是当天的。-->
-        <File>${LOG_DIR}/info.${APP_NAME}.log</File>
+        <!--<File>${LOG_DIR}/info.${APP_NAME}.log</File>-->
         <!--滚动策略，按照时间滚动 TimeBasedRollingPolicy-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--文件路径,定义了日志的切分方式——把每一天的日志归档到一个文件中,以防止日志填满整个磁盘空间-->
-            <FileNamePattern>${LOG_DIR}/info.${APP_NAME}.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>${LOG_DIR}/info.created_on_%d{yyyy-MM-dd}.part_%i.log</FileNamePattern>
             <!--只保留最近90天的日志-->
             <maxHistory>90</maxHistory>
             <!--用来指定日志文件的上限大小，那么到了这个值，就会删除旧的日志-->
             <!--<totalSizeCap>1GB</totalSizeCap>-->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- maxFileSize:这是活动文件的大小，默认值是10MB,本篇设置为1KB，只是为了演示 -->
+                <maxFileSize>2MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
-        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <maxFileSize>256MB</maxFileSize>
-        </triggeringPolicy>
+        <!--<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">-->
+        <!--<maxFileSize>1KB</maxFileSize>-->
+        <!--</triggeringPolicy>-->
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</pattern>
             <charset>UTF-8</charset> <!-- 此处设置字符集 -->
@@ -49,17 +53,18 @@
             <level>Error</level>
         </filter>
         <!--日志名称，如果没有File 属性，那么只会使用FileNamePattern的文件路径规则如果同时有<File>和<FileNamePattern>，那么当天日志是<File>，明天会自动把今天的日志改名为今天的日期。即，<File> 的日志都是当天的。-->
-        <File>${LOG_DIR}/error.${APP_NAME}.log</File>
+        <!--<File>${LOG_DIR}/error.${APP_NAME}.log</File>-->
         <!--滚动策略，按照时间滚动 TimeBasedRollingPolicy-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--文件路径,定义了日志的切分方式——把每一天的日志归档到一个文件中,以防止日志填满整个磁盘空间-->
-            <FileNamePattern>${LOG_DIR}/error.${APP_NAME}.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>${LOG_DIR}/error.created_on_%d{yyyy-MM-dd}.part_%i.log</FileNamePattern>
             <!--只保留最近90天的日志-->
             <maxHistory>90</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- maxFileSize:这是活动文件的大小，默认值是10MB,本篇设置为1KB，只是为了演示 -->
+                <maxFileSize>2MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
-        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <maxFileSize>256MB</maxFileSize>
-        </triggeringPolicy>
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</pattern>
             <charset>UTF-8</charset> <!-- 此处设置字符集 -->

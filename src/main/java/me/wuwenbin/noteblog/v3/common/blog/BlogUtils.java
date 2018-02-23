@@ -4,9 +4,12 @@ import cn.hutool.http.HttpUtil;
 import jodd.json.JsonParser;
 import me.wuwenbin.modules.utils.util.Maps;
 import me.wuwenbin.noteblog.v3.model.User;
+import me.wuwenbin.noteblog.v3.model.XParam;
 import me.wuwenbin.noteblog.v3.model.frontend.bo.IpInfo;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * created by Wuwenbin on 2018/2/8 at 15:29
@@ -27,6 +30,12 @@ public class BlogUtils {
                 , "nickname", user.getNickname()
                 , "avatar", user.getAvatar()
                 , "dri", user.getDefaultRoleId());
+    }
+
+    public static Map<String, Object> settingMap(List<XParam> xParams) {
+        return xParams.stream()
+                .filter(xParam -> !xParam.getName().equals("app_id") && !xParam.getName().equals("app_key"))
+                .collect(Collectors.toMap(XParam::getName, XParam::getValue));
     }
 
     public static IpInfo getIpInfo(String ip) {

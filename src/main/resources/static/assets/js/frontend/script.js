@@ -62,4 +62,28 @@ $(function ($) {
         }
     })
 
+    bottomNav();
+    $(window).resize(function () {
+        bottomNav();
+    })
+
 });
+
+function bottomNav() {
+    var bodyHeight = $("body").outerHeight(true);
+    var windowHeight = $(window).outerHeight(true);
+    var $bNav = $("div.layui-fluid.bottom-nav");
+    if (bodyHeight < windowHeight) {
+        $bNav.css({
+            position: "fixed",
+            width: "100%",
+            bottom: 0
+        })
+    } else {
+        $bNav.css({
+            position: "",
+            width: "",
+            bottom: "'"
+        })
+    }
+}
