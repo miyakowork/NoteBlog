@@ -33,7 +33,13 @@ public interface ArticleRepository extends IPageAndSortRepository<Article, Long>
 
     @SQL("SELECT max(top) FROM t_article")
     @Primitive(Integer.class)
-    Integer findMaxTopById();
+    Integer findMaxTop();
+
+    @Primitive
+    Integer findTopById(long articleId);
+
+    @SQL("UPDATE t_article SET top = top - 1 WHERE top > ?")
+    int updateTopsByTop(int currentTop) throws Exception;
 
     int updateTopById(int top, long articleId) throws Exception;
 

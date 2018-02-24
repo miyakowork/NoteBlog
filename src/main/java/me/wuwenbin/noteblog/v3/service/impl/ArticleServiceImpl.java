@@ -150,9 +150,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public boolean updateTopById(long articleId, boolean top) throws Exception {
         if (top) {
-            int maxTop = articleRepository.findMaxTopById();
+            int maxTop = articleRepository.findMaxTop();
             return articleRepository.updateTopById(maxTop + 1, articleId) == 1;
         } else {
+            int currentTop = articleRepository.findTopById(articleId);
+            int isModifyTops = articleRepository.updateTopsByTop(currentTop);
             return articleRepository.updateTopById(0, articleId) == 1;
         }
     }
