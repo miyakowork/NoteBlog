@@ -11,14 +11,10 @@
         <div class="layui-tab layui-tab-card">
             <div class="layui-tab-content start">
                 <fieldset class="layui-elem-field layui-field-title">
-                    <legend>评论管理</legend>
+                    <legend>留言管理</legend>
                 </fieldset>
-                <div id="comment-table-search">
-                    文章标题：
-                    <div class="layui-inline">
-                        <input class="layui-input" name="articleTitle" id="article-title-search" autocomplete="off">
-                    </div>
-                    &nbsp;&nbsp;用户昵称：
+                <div id="message-table-search">
+                    用户昵称：
                     <div class="layui-inline">
                         <input class="layui-input" name="nickname" id="nickname-search" autocomplete="off">
                     </div>
@@ -28,7 +24,7 @@
                     </div>
                     <button class="layui-btn" data-type="reload">搜索</button>
                 </div>
-                <table class="layui-hide" id="comment-table" lay-filter="comment"></table>
+                <table class="layui-hide" id="message-table" lay-filter="message"></table>
             </div>
         </div>
     </div>
@@ -38,4 +34,3 @@
     <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="正常|隐藏" lay-filter="enable" {{
            d.enable== true ? 'checked' : '' }}>
 </script>
-

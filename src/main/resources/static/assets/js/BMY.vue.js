@@ -163,7 +163,7 @@ var template = {
     '                               </div>' +
     '                           </div>' +
     '                           <hr>' +
-    '                           <div class="content detail" v-html="article.content"></div>' +
+    '                           <div class="content detail" v-html="article.comment"></div>' +
     '                       </div>' +
     '                       <div class="layui-row text-center layui-mt20">' +
     '                           <div v-if="article.appreciable" class="layui-btn layui-btn-warm layui-hide layui-show-md-inline-block" @click="money(alipay,wechat)"><i class="fa fa-rmb"></i> 打赏</div>' +
@@ -239,23 +239,39 @@ var template = {
     '       </div>' +
     '   </div>' +
     '</div>'
+    , messageComment:
+    '<div id="cta" class="layui-collapse layui-panel layui-article">' +
+    '   <div class="layui-colla-item">' +
+    '       <div class="layui-colla-content layui-show layui-article comment">' +
+    '           <fieldset class="layui-elem-field layui-field-title">' +
+    '               <legend>随便说两句</legend>' +
+    '               <div class="layui-field-box">' +
+    '                   <label for="comment-input"></label>' +
+    '                       <textarea id="comment-input" style="display: none;"></textarea>' +
+    '               </div>' +
+    '               <button v-if="su != null" class="layui-btn layui-btn-sm" style="float: right;width: 120px;" @click="submit()" >发表</button>' +
+    '               <a v-if="su == null" class="layui-btn layui-btn-sm" style="float: right;width: 120px;"  href="/api/qq" target="_blank" @click="beforeLogin();" id="beforeLogin"><i class="fa fa-qq"></i> 请先登录</a>' +
+    '           </fieldset>' +
+    '       </div>' +
+    '   </div>' +
+    '</div>'
     , commentArea:
     '<div class="layui-collapse layui-panel layui-article" id="ca">' +
     '   <div class="layui-colla-item">' +
     '       <div class="layui-colla-content layui-show layui-article comment">' +
     '           <fieldset class="layui-elem-field layui-field-title">' +
-    '               <legend>评论区</legend>' +
+    '               <legend>网友评论・留言区</legend>' +
     '               <div class="layui-field-box comment">' +
     '                   <p v-if="comments.totalCount == 0" class="text-center">暂无评论</p>' +
     '                   <blockquote class="layui-elem-quote layui-mt20" v-html="tips"></blockquote>' +
     '                   <template v-for="c in comments.result">' +
-    '                       <div class="layui-row comment-block">' +
+    '                       <div class="layui-row comment-block" v-if="c.enable">' +
     '                           <div class="layui-row">' +
     '                               <div class="layui-col-md1 layui-col-xs1 comment-avatar">' +
     '                                   <img class="layui-circle" :src="c.avatar">' +
     '                               </div>' +
     '                               <div class="layui-col-md10 layui-col-xs9" style="border-bottom: 1px dotted #dbdbdb;padding-bottom: 10px;">' +
-    '                                   <i class="fa fa-user-o"></i> <span class="comment-user" :style="masterColor(c.id)">{{c.nickname}}&nbsp;<svg v-if="c.id==1" class="icon" aria-hidden="true"><use xlink:href="#icon-renzhengkaobei"></use></svg>&nbsp;&nbsp;</span><small><i class="fa fa-location-arrow"></i> {{c.ipCnAddr}}网友</small><br/>' +
+    '                                   <i class="fa fa-user-o"></i> <span class="comment-user" :style="masterColor(c.userId)">{{c.nickname}}&nbsp;<svg v-if="c.userId==1" class="icon" aria-hidden="true"><use xlink:href="#icon-renzhengkaobei"></use></svg>&nbsp;&nbsp;</span><small><i class="fa fa-location-arrow"></i> {{c.ipCnAddr}}网友</small><br/>' +
     '                                   <i class="fa fa-clock-o"></i> <span class="comment-datetime">{{postDt(c.post)}}</span>' +
     '                               </div>' +
     '                               <div class="layui-row comment-block-content">' +
@@ -303,6 +319,27 @@ var template = {
     '            </div>' +
     '        </li>' +
     '   </ul>' +
+    '</div>'
+    , messagePage:
+    '<div id="message-body" class="layui-container">' +
+    '   <div class="layui-row layui-col-space10">' +
+    '       <div id="message-info" class="layui-col-md9 animated fadeInUp">' +
+    '           <div class="layui-collapse layui-panel layui-article">' +
+    '               <slot name="post"></slot>' +
+    '           </div>' +
+    '           <div class="layui-collapse layui-panel layui-article">' +
+    '               <slot name="comment"></slot>' +
+    '           </div>' +
+    '       </div>' +
+    '       <div class="layui-col-md3">' +
+    '           <div id="affix-side">' +
+    '               <slot name="info"></slot>' +
+    '               <slot name="search"></slot>' +
+    '               <slot name="cate"></slot>' +
+    '               <slot name="tags"></slot>' +
+    '           </div>' +
+    '       </div>' +
+    '   </div>' +
     '</div>'
 };
 
@@ -601,6 +638,43 @@ Vue.component('bmy-comment', {
     }
 });
 
+Vue.component('bmy-message-comment', {
+    template: template.messageComment
+    , props: {
+        su: {
+            type: Object
+            , default: {}
+        }
+    }
+    , methods: {
+        submit: function () {
+            var h1 = BMY.tempHtml === undefined ? "" : BMY.tempHtml;
+            var h2 = BMY.tempHtml2 === undefined ? "" : BMY.tempHtml2;
+            var comment = h1 + "<p>" + BMY.layedit.getContent(BMY.editor).replace(h2, "") + "</p>";
+            if (comment === "<p></p>") {
+                layui.layer.msg("请填写评论内容");
+            } else {
+                $.post("/token/message/sub", {
+                    userId: this.su.id,
+                    comment: comment
+                }, function (resp) {
+                    layer.msg(resp.message);
+                    setTimeout(function () {
+                        if (resp.code === BMY.status.ok) {
+                            location.href = "/message"
+                        }
+                    }, 1000);
+                });
+            }
+        }
+        , beforeLogin: function () {
+            var $btn = $("#beforeLogin");
+            $btn.addClass("layui-btn-disabled");
+            $btn.text("请刷新页面..")
+        }
+    }
+});
+
 Vue.component('bmy-comment-list', {
     template: template.commentArea
     , props: {
@@ -614,7 +688,7 @@ Vue.component('bmy-comment-list', {
         }
         , re: {
             type: Boolean
-            , default: true
+            , default: false
         }
     }
     , methods: {
@@ -659,4 +733,8 @@ Vue.component('bmy-notes', {
             location.href = s === "" ? "/note" : "/note?t=" + s + "&cc=" + s;
         }
     }
+});
+
+Vue.component('bmy-message-page', {
+    template: template.messagePage
 });

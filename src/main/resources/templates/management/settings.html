@@ -115,6 +115,31 @@
                             </div>
                         </div>
 
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">留言功能</label>
+                                <div class="layui-input-inline">
+                                    <input type="checkbox" name="message" lay-skin="switch" lay-text="开启|关闭"
+                                           lay-filter="messageSwitch"
+                                           th:checked="${is_open_message eq '1'}">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">开启则网友可以通过登录后发表留言，关闭则不显示文本框只允许查看以前的留言</div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">留言区置顶公告信息</label>
+                                <div class="layui-input-inline" style="width: 750px;">
+                                    <input type="text" name="message_panel_words" placeholder="请输入文本"
+                                           th:value="${message_panel_words}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <button class="layui-btn-sm layui-btn" lay-submit lay-filter="settings">提交</button>
+                            </div>
+                        </div>
+
 
                         <fieldset class="layui-elem-field layui-field-title">
                             <legend>导航栏设置</legend>

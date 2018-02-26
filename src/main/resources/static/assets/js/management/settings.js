@@ -13,6 +13,15 @@ layui.use(['form', 'element'], function () {
         })
     });
 
+    form.on('switch(messageSwitch)', function (data) {
+        var s = data.elem.checked;
+        BMY.ajax(BMY.url.prefix + "/settings/edit", {name: 'is_open_message', value: s ? 1 : 0}, function (json) {
+            if (json.code === BMY.status.ok) {
+                layer.tips('网友留言功能：' + ((s) ? '开启' : '关闭'), data.othis);
+            }
+        })
+    });
+
     form.on('switch(linkSwitch)', function (data) {
         var s = data.elem.checked;
         if (s) {

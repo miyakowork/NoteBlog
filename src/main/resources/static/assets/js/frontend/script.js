@@ -8,11 +8,17 @@ layui.use(['layer', 'laytpl', 'util', 'clock'], function () {
     BMY.layui.layer = layui.layer;
     var util = layui.util;
     var clock = layui.clock;
-    var article = layui.article;
 
     clock.now();
     util.fixbar({
-        css: {right: 10, bottom: 25}
+        bar1: true
+        , click: function (type) {
+            console.log(type);
+            if (type === 'bar1') {
+                location.href = "/message";
+            }
+        }
+        , css: {right: 10, bottom: 25}
         , bgcolor: '#9F9F9F'
 
     });

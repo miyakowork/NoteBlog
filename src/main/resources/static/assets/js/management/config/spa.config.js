@@ -68,6 +68,10 @@ $(function () {
                 templateUrl: url_prefix + 'comment',
                 controller: static_prefix + '/comment.js'
             },
+            'message': {
+                templateUrl: url_prefix + 'message',
+                controller: static_prefix + '/message.js'
+            },
             'noteblog': {
                 templateUrl: url_prefix + 'noteblog',
                 controller: static_prefix + '/noteblog.js'
