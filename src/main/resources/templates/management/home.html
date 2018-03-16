@@ -91,7 +91,7 @@
                         <p class="layui-admin-mt10">发布时间：<span
                                 th:text="${latestArticle!=null?latestArticle.post:''}"></span></p>
                         <fieldset class="layui-elem-field layui-field-title" style="word-break: break-all;">
-                            <div class="layui-field-box" th:text="${latestArticle != null ?latestArticle.summary:''}">
+                            <div class="layui-field-box" th:utext="${latestArticle != null ?latestArticle.summary:''}">
                             </div>
                         </fieldset>
                     </div>
@@ -117,7 +117,7 @@
                         <p class="layui-admin-mt10">文章标题：<span
                                 th:text="${latestComment!=null?latestComment.title:''}"></span></p>
                         <fieldset class="layui-elem-field layui-field-title" style="word-break: break-all;">
-                            <div class="layui-field-box" th:text="${latestComment!=null?latestComment.comment:''}">
+                            <div class="layui-field-box" th:utext="${latestComment!=null?latestComment.comment:''}">
                             </div>
                         </fieldset>
                     </div>

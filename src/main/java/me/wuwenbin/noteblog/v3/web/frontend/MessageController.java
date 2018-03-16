@@ -52,7 +52,7 @@ public class MessageController extends BaseController {
         Map<String, Object> settings = BlogUtils.settingMap(xParams);
         model.addAttribute("settings", settings);
         model.addAttribute("cates", cateRepository.findAll());
-        model.addAttribute("tags", tagReferRepository.findTagsTab());
+        model.addAttribute("tags", BlogUtils.toLowerKeyListMap(tagReferRepository.findTagsTab()));
         model.addAttribute("messages", messageRepository.findPagination(messageVoPage, MessageVo.class, messageListBo));
         return "frontend/message";
     }
@@ -65,7 +65,7 @@ public class MessageController extends BaseController {
             message.setIpAddr(WebUtils.getRemoteAddr(request));
             message.setIpCnAddr(BlogUtils.getIpCnInfo(BlogUtils.getIpInfo(message.getIpAddr())));
             message.setUserAgent(request.getHeader("user-agent"));
-            message.setComment(Injection.stripSqlInjection(message.getComment()));
+            message.setComment(Injection.stripSqlXSS(message.getComment()));
             List<Keyword> keywords = keywordRepository.findAll();
             keywords.forEach(kw -> message.setComment(message.getComment().replace(kw.getWords(), LangUtils.string.repeat("*", kw.getWords().length()))));
             return builder("发表留言成功", "发表留言失败", "发表留言失败").exec(() -> messageRepository.save(message) != null);

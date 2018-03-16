@@ -51,8 +51,8 @@ public class ArticleController {
         model.addAttribute("article", article);
         model.addAttribute("tags", tagRepository.findArticleTags(article.getId(), true));
         model.addAttribute("author", userRepository.findNicknameById(article.getAuthorId()));
-        model.addAttribute("articles", articleRepository.findSimilarArticles(article.getCateId(), 10));
-        model.addAttribute("similars", articleRepository.findSimilarArticles(article.getCateId(), 6));
+        model.addAttribute("articles", BlogUtils.toLowerKeyListMap(articleRepository.findSimilarArticles(article.getCateId(), 10)));
+        model.addAttribute("similars", BlogUtils.toLowerKeyListMap(articleRepository.findSimilarArticles(article.getCateId(), 6)));
         model.addAttribute("comments", commentRepository.findPagination(commentVoPage, CommentVo.class, commentListBo));
         return "frontend/article";
     }

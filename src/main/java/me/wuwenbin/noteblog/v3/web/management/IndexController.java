@@ -6,6 +6,7 @@ import me.wuwenbin.modules.utils.http.WebUtils;
 import me.wuwenbin.modules.valdiation.template.RTemplate;
 import me.wuwenbin.noteblog.v3.common.SessionParam;
 import me.wuwenbin.noteblog.v3.common.blog.BlogContext;
+import me.wuwenbin.noteblog.v3.common.blog.BlogUtils;
 import me.wuwenbin.noteblog.v3.model.Article;
 import me.wuwenbin.noteblog.v3.model.Note;
 import me.wuwenbin.noteblog.v3.model.User;
@@ -63,7 +64,7 @@ public class IndexController extends BaseController {
         model.addAttribute("commentCnt", commentRepository.count());
         model.addAttribute("latestArticle", articleRepository.findLatestArticle());
         model.addAttribute("latestNote", noteRepository.findLatestNote());
-        model.addAttribute("latestComment", commentRepository.findLatestComment());
+        model.addAttribute("latestComment", BlogUtils.toLowerKeyMap(commentRepository.findLatestComment()));
         model.addAttribute("cateList", cateRepository.findAll());
         return "management/home";
     }

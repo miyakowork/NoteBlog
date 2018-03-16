@@ -12,6 +12,4 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional(value = "transactionManager", rollbackFor = Exception.class)
 public interface ArticleVoRepository extends IPageAndSortRepository<ArticleVo, Long>, IBaseCrudRepository<ArticleVo, Long> {
-
-
 }

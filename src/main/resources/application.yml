@@ -1,3 +1,4 @@
+
 spring:
   thymeleaf:
     cache: false
@@ -5,11 +6,11 @@ spring:
     mode: LEGACYHTML5
   datasource:
     druid:
-      db-type: mysql
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/noteblogv3?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
-      username: root
-      password: 12345678
+      db-type: h2
+      driver-class-name: org.h2.Driver
+#      url: jdbc:mysql://127.0.0.1:3306/noteblogv3?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+      username: noteblog
+      password: v3
       initial-size: 5
       min-idle: 5
       max-active: 20
@@ -34,6 +35,9 @@ spring:
       enabled: false
   application:
     name: noteblogv3
+  h2:
+    console:
+      enabled: true
 server:
   port: 8080
   tomcat:

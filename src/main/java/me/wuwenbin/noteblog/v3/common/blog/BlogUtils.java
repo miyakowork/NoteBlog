@@ -6,9 +6,12 @@ import me.wuwenbin.modules.utils.util.Maps;
 import me.wuwenbin.noteblog.v3.model.User;
 import me.wuwenbin.noteblog.v3.model.XParam;
 import me.wuwenbin.noteblog.v3.model.frontend.bo.IpInfo;
+import org.springframework.util.CollectionUtils;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 /**
@@ -53,4 +56,21 @@ public class BlogUtils {
         }
     }
 
+    public static Map<String, Object> toLowerKeyMap(Map<String, Object> originMap) {
+        if (CollectionUtils.isEmpty(originMap)) {
+            return null;
+        }
+        Map<String, Object> newMap = new TreeMap<>();
+        originMap.forEach((k, v) -> newMap.put(k.toLowerCase(), v));
+        return newMap;
+    }
+
+    public static List<Map<String, Object>> toLowerKeyListMap(List<Map<String, Object>> originListMap) {
+        if (CollectionUtils.isEmpty(originListMap)) {
+            return null;
+        }
+        List<Map<String, Object>> newListMap = new LinkedList<>();
+        originListMap.forEach(m -> newListMap.add(toLowerKeyMap(m)));
+        return newListMap;
+    }
 }

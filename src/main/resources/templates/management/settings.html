@@ -74,6 +74,17 @@
 
                     <div class="layui-form-item">
                         <div class="layui-inline">
+                            <label class="layui-form-label">信息板位置</label>
+                            <div class="layui-input-inline">
+                                <input type="checkbox" name="infoPanelOrder" lay-skin="switch" lay-text="首要|次要"
+                                       lay-filter="infoLabelOrderSwitch" th:checked="${info_panel_order eq '1'}">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">开启则网站用户可以使用QQ快速登录</div>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
                             <label class="layui-form-label">信息板内容</label>
                             <div class="layui-input-inline" style="width: 600px;">
                                 <textarea name="infoLabel" placeholder="请输入信息板html内容"

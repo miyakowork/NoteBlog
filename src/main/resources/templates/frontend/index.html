@@ -11,7 +11,8 @@
     <bmy-block :quote="quote"></bmy-block>
     <bmy-articles>
         <bmy-list slot="list"></bmy-list>
-        <bmy-info :utext="params.info_label" :qq="params.qq_login" slot="infoLabel" :su="su"></bmy-info>
+        <bmy-info :utext="params.info_label" :qq="params.qq_login" slot="infoLabel" :su="su"
+                  :order="params.info_panel_order"></bmy-info>
         <bmy-search :sw="sw" slot="search"></bmy-search>
         <bmy-cate :cates="cates" slot="cate"></bmy-cate>
         <bmy-random :articles="articles" slot="random"></bmy-random>

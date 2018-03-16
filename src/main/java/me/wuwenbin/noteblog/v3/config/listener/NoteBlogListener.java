@@ -42,7 +42,7 @@ public class NoteBlogListener implements ServletContextListener {
                 log.info("初始化设置管理员账号：[{}]，密码：[{}]", masterName, masterPass);
                 paramRepository.updateValueByName(XParam.builder().name("is_set_master").value("1").build());
             } else {
-                log.info("已设定管理员账号，跳过初始化管理严账号设置");
+                log.info("已设定管理员账号，跳过初始化管理员账号设置");
             }
             initUploadPath();
         } catch (Exception e) {

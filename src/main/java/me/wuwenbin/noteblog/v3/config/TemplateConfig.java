@@ -9,10 +9,13 @@ import me.wuwenbin.modules.jpa.factory.business.DbType;
 import me.wuwenbin.modules.repository.api.repository.RepositoryFactory;
 import me.wuwenbin.modules.repository.registry.RepositoryRegistry;
 import me.wuwenbin.modules.valdiation.template.RTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.util.StringUtils;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,17 +27,26 @@ import java.util.concurrent.ConcurrentHashMap;
 @Configuration
 public class TemplateConfig {
 
+    @Autowired
+    private Environment environment;
+
     //==========================jpa配置========================
     @Bean
     public DruidDataSource dataSource() {
-        return DruidDataSourceBuilder.create().build();
+        DruidDataSource druidDataSource = DruidDataSourceBuilder.create().build();
+        String dbPath = environment.getProperty("db.path");
+        if (StringUtils.isEmpty(dbPath)) {
+            throw new IllegalArgumentException("数据库文件路径未正确配置！");
+        }
+        druidDataSource.setUrl("jdbc:h2:" + dbPath + ";IGNORECASE=TRUE;MODE=MySQL;");
+        return druidDataSource;
     }
 
     @Bean
     public DataSourceX dataSourceX(DruidDataSource druidDataSource) {
         DataSourceX dataSourceX = new DataSourceX();
         dataSourceX.setDataSource(druidDataSource);
-        dataSourceX.setInitDbType(DbType.Mysql);
+        dataSourceX.setInitDbType(DbType.H2);
         return dataSourceX;
     }
 
@@ -42,7 +54,7 @@ public class TemplateConfig {
     public DaoFactory daoFactory(DataSourceX dataSourceX) {
         DaoFactory daoFactory = new DaoFactory();
         Map<String, DataSourceX> multiDao = new ConcurrentHashMap<>(2);
-        String defaultDao = "blog_v201801_default_dao";
+        String defaultDao = "noteblogv3_2_0_default_dao";
         multiDao.put(defaultDao, dataSourceX);
         daoFactory.setDataSourceMap(multiDao);
         daoFactory.setDefaultDao(dataSourceX);

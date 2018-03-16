@@ -46,8 +46,8 @@ public class IndexServiceImpl implements IndexService {
         Map<String, Object> settings = BlogUtils.settingMap(xParams);
         long blogCount = articleRepository.count();
         List<Cate> cateList = cateRepository.findAll();
-        List<Map<String, Object>> randomArticles = articleRepository.findRandomArticles(10);
-        List<Map<String, Object>> tagsTab = tagReferRepository.findTagsTab();
+        List<Map<String, Object>> randomArticles = BlogUtils.toLowerKeyListMap(articleRepository.findRandomArticles(10));
+        List<Map<String, Object>> tagsTab = BlogUtils.toLowerKeyListMap(tagReferRepository.findTagsTab());
         return IndexVo.builder()
                 .settings(settings)
                 .blogCount(blogCount)

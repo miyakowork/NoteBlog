@@ -81,14 +81,37 @@ var template = {
     , info:
     '<div class="layui-tab layui-tab-card">' +
     '   <ul class="layui-tab-title select-none">' +
+    '       <template v-if="order == 1">' +
     '       <li class="layui-this" v-show="info">网站信息</li>' +
     '       <li :class="{ \'layui-this\' : !info }">会员中心</li>' +
+    '       </template>' +
+    '       <template v-if="order != 1">' +
+    '           <li class="layui-this">会员中心</li>' +
+    '           <li :class="{ \'layui-this\' : !info }" v-show="info">网站信息</li>' +
+    '       </template>' +
     '   </ul>' +
     '   <div class="layui-tab-content">' +
+    '       <template v-if="order == 1">' +
     '       <div class="layui-tab-item layui-show layui-text" v-html="utext" v-show="info">' +
     '           {{ utext }}' +
     '       </div>' +
     '       <div class="layui-tab-item" :class="{ \'layui-show\' : !info }">' +
+    '           <p style="text-align: center" v-show="su == null">' +
+    '               <a v-if="qq == 1" @click="tip()" href="/api/qq" class="layui-btn layui-btn-sm layui-btn-primary">' +
+    '                   <i class="fa fa-qq"></i> 网站用户' +
+    '               </a>' +
+    '               <a href="/login" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-user-o"></i> 网站管理</a>' +
+    '           </p>' +
+    '           <p v-if="su != null" style="padding-left: 20px;">' +
+    '               <a href="/token/logout" style="font-size: 14px;">' +
+    '                   <img id="logout" @mouseover="tipsOver()" @mouseout="tipsOut()" style="height: 45px;width: 45px;border: 1px solid #ccc;" class="layui-circle" :src="su != null ?su.avatar:\'\'">&nbsp;&nbsp;欢迎你，{{su.nickname}}！' +
+    '               </a>' +
+    '               &nbsp;<a v-if="su !=null && su.dri == 1" href="/management/index" target="_blank" class="layui-text">后台管理 <i class="fa fa-angle-double-right"></i> </a>' +
+    '           </p>' +
+    '       </div>' +
+    '       </template>' +
+    '       <template v-if="order != 1">' +
+    '       <div class="layui-tab-item layui-show">' +
     '           <p style="text-align: center" v-show="su == null">' +
     '               <a v-if="qq == 1" @click="tip()" href="/api/qq" class="layui-btn layui-btn-sm layui-btn-primary">' +
     '                   <i class="fa fa-qq"></i> 网站用户' +
@@ -102,6 +125,10 @@ var template = {
     '               &nbsp;<a v-if="su !=null && su.dri == 1" href="/management/index" target="_blank" class="layui-text">后台管理 <i class="fa fa-angle-double-right"></i> </a>' +
     '           </p>' +
     '       </div>' +
+    '       <div class="layui-tab-item layui-text" v-html="utext" v-show="info">' +
+    '           {{ utext }}' +
+    '       </div>' +
+    '       </template>' +
     '   </div>' +
     '</div>'
     , search:
@@ -459,6 +486,7 @@ Vue.component('bmy-info', {
             type: Object
             , default: {}
         }
+        , order: Number
     }
     , data: function () {
         return {

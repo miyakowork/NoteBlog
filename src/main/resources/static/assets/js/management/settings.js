@@ -22,6 +22,15 @@ layui.use(['form', 'element'], function () {
         })
     });
 
+    form.on('switch(infoLabelOrderSwitch)', function (data) {
+        var s = data.elem.checked;
+        BMY.ajax(BMY.url.prefix + "/settings/edit", {name: 'info_panel_order', value: s ? 1 : 0}, function (json) {
+            if (json.code === BMY.status.ok) {
+                layer.tips('修改信息板位置为：' + ((s) ? '首要' : '次要'), data.othis);
+            }
+        })
+    });
+
     form.on('switch(linkSwitch)', function (data) {
         var s = data.elem.checked;
         if (s) {
