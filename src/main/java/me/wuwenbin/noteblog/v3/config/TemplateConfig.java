@@ -30,7 +30,7 @@ public class TemplateConfig {
     @Autowired
     private Environment environment;
 
-    //==========================jpa配置========================
+    //==========================jpa配置,多数据库类型========================
     @Bean
     public DruidDataSource dataSource() {
         String dbType = environment.getProperty("db.type");
