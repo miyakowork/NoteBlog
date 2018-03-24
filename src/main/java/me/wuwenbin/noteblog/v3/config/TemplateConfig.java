@@ -17,8 +17,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.util.StringUtils;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * created by Wuwenbin on 2018/1/17 at 19:57
@@ -33,28 +33,55 @@ public class TemplateConfig {
     //==========================jpa配置========================
     @Bean
     public DruidDataSource dataSource() {
-        DruidDataSource druidDataSource = DruidDataSourceBuilder.create().build();
-        String dbPath = environment.getProperty("db.path");
-        if (StringUtils.isEmpty(dbPath)) {
-            throw new IllegalArgumentException("数据库文件路径未正确配置！");
+        String dbType = environment.getProperty("db.type");
+        if (StringUtils.isEmpty(dbType)) {
+            throw new IllegalArgumentException("请正确配置数据库的类型！");
+        } else {
+            DruidDataSource druidDataSource = DruidDataSourceBuilder.create().build();
+            if (dbType.equals("h2")) {
+                String driverClassName = "org.h2.Driver";
+                String dbPath = environment.getProperty("db.path");
+                if (StringUtils.isEmpty(dbPath)) {
+                    throw new IllegalArgumentException("数据库文件路径未正确配置！");
+                }
+                druidDataSource.setDbType("h2");
+                druidDataSource.setDriverClassName(driverClassName);
+                druidDataSource.setUrl("jdbc:h2:" + dbPath + ";IGNORECASE=TRUE;MODE=MySQL;");
+            } else {
+                String dbIp = environment.getProperty("db.mysql.ip", "127.0.0.1");
+                String dbPort = environment.getProperty("db.mysql.port", "3306");
+                String dbName = environment.getProperty("db.name", "noteblogv3");
+                String url = "jdbc:mysql://" + dbIp + ":" + dbPort + "/" + dbName + "?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true";
+                String driverClassName = "com.mysql.jdbc.Driver";
+                druidDataSource.setDbType("mysql");
+                druidDataSource.setDriverClassName(driverClassName);
+                druidDataSource.setUrl(url);
+            }
+            return druidDataSource;
         }
-        druidDataSource.setUrl("jdbc:h2:" + dbPath + ";IGNORECASE=TRUE;MODE=MySQL;");
-        return druidDataSource;
     }
 
     @Bean
     public DataSourceX dataSourceX(DruidDataSource druidDataSource) {
         DataSourceX dataSourceX = new DataSourceX();
         dataSourceX.setDataSource(druidDataSource);
-        dataSourceX.setInitDbType(DbType.H2);
+        String dbType = environment.getProperty("db.type");
+        if (StringUtils.isEmpty(dbType)) {
+            throw new IllegalArgumentException("请正确配置数据库的类型！");
+        }
+        if (dbType.equals("h2")) {
+            dataSourceX.setInitDbType(DbType.H2);
+        } else {
+            dataSourceX.setInitDbType(DbType.Mysql);
+        }
         return dataSourceX;
     }
 
     @Bean
     public DaoFactory daoFactory(DataSourceX dataSourceX) {
         DaoFactory daoFactory = new DaoFactory();
-        Map<String, DataSourceX> multiDao = new ConcurrentHashMap<>(2);
-        String defaultDao = "noteblogv3_2_0_default_dao";
+        Map<String, DataSourceX> multiDao = new HashMap<>(2);
+        String defaultDao = "noteblogv3_3_0_default_dao";
         multiDao.put(defaultDao, dataSourceX);
         daoFactory.setDataSourceMap(multiDao);
         daoFactory.setDefaultDao(dataSourceX);

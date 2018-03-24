@@ -36,7 +36,7 @@ layui.use(['element', 'form', 'layer', 'upload'], function () {
 
     upload.render({
         elem: '#coverImg' //绑定元素
-        , url: BMY.url.prefix + '/profile/upload/' //上传接口
+        , url: BMY.url.prefix + '/blog/upload/cover' //上传接口
         , done: function (res) {
             if (res.code === 0) {
                 $("#coverImg").html('<p><img style="width: 144px;height: 90px;" src="' + res.data.src + '"></p>');

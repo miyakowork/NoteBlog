@@ -63,7 +63,7 @@ var template = {
     '    </div>'
     , articles:
     '<div id="main-body" class="layui-container">' +
-    '        <div class="layui-row layui-col-space10 animated fadeInUp">' +
+    '        <div class="layui-row layui-col-space10">' +
     '            <slot name="list"></slot>' +
     '            <div class="layui-col-md3">' +
     '                <div id="affix-side">' +

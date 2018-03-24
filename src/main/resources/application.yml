@@ -6,8 +6,8 @@ spring:
     mode: LEGACYHTML5
   datasource:
     druid:
-      db-type: h2
-      driver-class-name: org.h2.Driver
+#      db-type: h2
+#      driver-class-name: org.h2.Driver
 #      url: jdbc:mysql://127.0.0.1:3306/noteblogv3?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
       username: noteblog
       password: v3
