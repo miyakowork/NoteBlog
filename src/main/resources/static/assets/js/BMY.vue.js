@@ -173,7 +173,7 @@ var template = {
     , articlePage:
     '<div id="blog-body" class="layui-container">' +
     '   <div class="layui-row layui-col-space10">' +
-    '       <div id="blog-info" class="layui-col-md9 animated fadeInUp">' +
+    '       <div id="blog-info" class="layui-col-md9">' +
     '           <div class="layui-collapse layui-panel layui-article">' +
     '               <div class="layui-colla-item">' +
     '                   <div class="layui-colla-content layui-show layui-article">' +
@@ -320,7 +320,7 @@ var template = {
     '   </div>' +
     '</div>'
     , notePage:
-    '<div id="note-body" class="layui-container animated fadeInUp">' +
+    '<div id="note-body" class="layui-container">' +
     '   <div id="note-operate" class="layui-row">' +
     '       <div class="layui-col-lg4 layui-col-md4 layui-col-sm5 layui-col-xs12 animated fadeInUp">' +
     '           <input name="words" v-model="words" @keyup.enter="searchAll"  :value="sw" @input="updateValue($event.target.value)" ' +
@@ -338,7 +338,7 @@ var template = {
     '       </div>' +
     '   </div>' +
     '   <hr class="animated fadeInUp">' +
-    '   <ul class="layui-timeline animated fadeInUp" id="timeline">' +
+    '   <ul class="layui-timeline" id="timeline">' +
     '       <li class="layui-timeline-item layui-note-cover">' +
     '            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>' +
     '            <div class="layui-timeline-content layui-text">' +
