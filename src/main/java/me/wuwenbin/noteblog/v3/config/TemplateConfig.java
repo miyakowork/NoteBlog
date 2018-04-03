@@ -38,7 +38,7 @@ public class TemplateConfig {
             throw new IllegalArgumentException("请正确配置数据库的类型！");
         } else {
             DruidDataSource druidDataSource = DruidDataSourceBuilder.create().build();
-            if (dbType.equals("h2")) {
+            if ("h2".equals(dbType)) {
                 String driverClassName = "org.h2.Driver";
                 String dbPath = environment.getProperty("db.path");
                 if (StringUtils.isEmpty(dbPath)) {
@@ -69,7 +69,7 @@ public class TemplateConfig {
         if (StringUtils.isEmpty(dbType)) {
             throw new IllegalArgumentException("请正确配置数据库的类型！");
         }
-        if (dbType.equals("h2")) {
+        if ("h2".equals(dbType)) {
             dataSourceX.setInitDbType(DbType.H2);
         } else {
             dataSourceX.setInitDbType(DbType.Mysql);
