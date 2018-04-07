@@ -52,7 +52,7 @@ public class CommentController extends BaseController {
             comment.setIpAddr(WebUtils.getRemoteAddr(request));
             comment.setIpCnAddr(BlogUtils.getIpCnInfo(BlogUtils.getIpInfo(comment.getIpAddr())));
             comment.setUserAgent(request.getHeader("user-agent"));
-            comment.setComment(Injection.stripSqlInjection(comment.getComment()));
+            comment.setComment(Injection.stripSqlXSS(comment.getComment()));
             List<Keyword> keywords = keywordRepository.findAll();
             keywords.forEach(kw -> comment.setComment(comment.getComment().replace(kw.getWords(), LangUtils.string.repeat("*", kw.getWords().length()))));
             return builder("发表评论成功", "发表评论失败", "发表评论失败").exec(() -> commentRepository.save(comment) != null);

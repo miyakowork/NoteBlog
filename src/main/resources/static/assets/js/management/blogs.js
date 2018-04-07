@@ -38,7 +38,7 @@ layui.use(['form', 'table', 'element'], function () {
                     return d.draft ? '<span class="layui-badge layui-bg-orange">未发布</span>' : '<span class="layui-badge layui-bg-blue">已发布</span>';
                 }
             }
-            , {field: 'approveCnt', title: '浏览数', width: 90}
+            , {field: 'views', title: '浏览数', width: 90}
             , {title: '评论', width: 90, align: 'center', toolbar: '#commentedTpl'}
             , {title: '打赏', width: 90, align: 'center', toolbar: '#appreciableTpl'}
             , {field: 'top', title: '置顶', width: 110, templet: '#topTpl'}

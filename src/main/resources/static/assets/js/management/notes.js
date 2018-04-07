@@ -24,7 +24,7 @@ layui.use(['form', 'table', 'element'], function () {
             {type: 'numbers'}
             , {
                 field: 'title', title: '笔记标题', sort: true, templet: function (d) {
-                    return '<a href="javascript:;" class="layui-blue">' + d.title + '</a>';
+                    return '<a href="/note?t=' + encodeURI(d.title) + '" class="layui-blue" target="_blank">' + d.title + '</a>';
                 }
             }
             , {

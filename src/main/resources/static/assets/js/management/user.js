@@ -18,7 +18,7 @@ layui.use(['form', 'table', 'element'], function () {
                     return d.username === '' || d.username === null ? 'QQ第三方注册' : d.username;
                 }
             }
-            ,{field: 'nickname',title: 'QQ昵称'}
+            , {field: 'nickname', title: 'QQ昵称'}
             , {
                 field: 'password', title: '密码', templet: function (d) {
                     return d.password === '' || d.password === null ? 'QQ第三方注册' : d.password;
@@ -51,6 +51,26 @@ layui.use(['form', 'table', 'element'], function () {
         });
     });
 
+
+    var $ = layui.$, active = {
+        reload: function () {
+            var nickname = $('#user-search');
+            //执行重载
+            table.reload('comment-table', {
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+                , where: {
+                    nickname: nickname.val()
+                }
+            });
+        }
+    };
+
+    $('#user-table-search').find('.layui-btn').on('click', function () {
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+    });
 
 });
 

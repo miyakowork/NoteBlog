@@ -17,4 +17,7 @@ public class UserQueryBo extends LayTableQuery {
 
     @QueryColumn(operator = Operator.EQ)
     private Long defaultRoleId;
+
+    private String nickname;
+
 }
