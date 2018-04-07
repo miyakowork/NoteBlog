@@ -56,7 +56,7 @@ layui.use(['form', 'table', 'element'], function () {
         reload: function () {
             var nickname = $('#user-search');
             //执行重载
-            table.reload('comment-table', {
+            userTable.reload({
                 page: {
                     curr: 1 //重新从第 1 页开始
                 }
