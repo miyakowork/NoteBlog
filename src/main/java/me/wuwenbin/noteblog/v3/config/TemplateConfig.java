@@ -22,15 +22,21 @@ import java.util.Map;
 
 /**
  * created by Wuwenbin on 2018/1/17 at 19:57
+ * @author wuwenbin
  */
 @Slf4j
 @Configuration
 public class TemplateConfig {
 
+    private final Environment environment;
+
     @Autowired
-    private Environment environment;
+    public TemplateConfig(Environment environment) {
+        this.environment = environment;
+    }
 
     //==========================jpa配置,多数据库类型========================
+
     @Bean
     public DruidDataSource dataSource() {
         String dbType = environment.getProperty("db.type");
@@ -104,6 +110,7 @@ public class TemplateConfig {
 
 
     //=========================validation信息模板配置=====================
+
     @Bean
     public RTemplate rTemplate(MessageSource messageSource) {
         return new RTemplate(messageSource);
