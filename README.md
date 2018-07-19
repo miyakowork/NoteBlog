@@ -5,12 +5,14 @@
 -----
 # 2.项目信息
 ## 项目技术
-+ `SpringBoot 2`
-+ `Spring Data JPA`
-+ `Hutool 4.1.1`
-+ `Maven 3`
-+ `Lombok`
-+ `Layui 2.2.3`
++ `SpringBoot 2（项目骨架，基于此框架开发的）`
++ `Spring Data JPA（负责DDL和一些简单的DML）`
++ `Mybatis（负责一些复杂的关系映射动态查询） `
++ `Hutool 4.1.1（超级强大的工具类）`
++ `Maven 3（项目管理工具和编译工具）`
++ `Lombok（精简代码量）`
++ `Layui 2.2.3（前端UI/JS框架，美观大气UI）`
++ `vipspa（前端js路由，单页面体验较好）`
 ## 功能展示
 + 待完善...
 
