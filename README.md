@@ -13,6 +13,7 @@
 + `Lombok（精简代码量）`
 + `Layui 2.2.3（前端UI/JS框架，美观大气UI）`
 + `LayuiXTree （展示树结构模型，对源码做了些许修改以适应本应用）`
++ `formSelects - 4.x （基于layui的select的下拉多选方案插件）`
 + `treetable-lay （用于菜单权限模块的操作）`
 + `Vue.js（前端js框架，MVVM模式，负责DOM/数据处理以及组件化html）`
 + `vipspa（前端js路由，单页面体验较好）`
