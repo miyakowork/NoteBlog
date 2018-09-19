@@ -253,7 +253,7 @@
                             </div>
                         </div>
 
-                        <div id="qq-login-id" class="layui-form-item">
+                        <div id="qq-login-id" class="layui-form-item" th:classappend="${qq_logineq '1'}? 'layui-hide'">
                             <div class="layui-inline">
                                 <label class="layui-form-label">APP ID</label>
                                 <div class="layui-input-inline" style="width: 250px;">
