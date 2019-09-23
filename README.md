@@ -1,4 +1,4 @@
-# ！！！本项目已升级，最新的项目请点此[链接](https://github.com/miyakowork/noteblogv4)
+# ！！！本项目已升级成noteblogv4，最新的项目请点此[链接](https://github.com/miyakowork/noteblogv4)
 
 ## 1.环境要求
 + OS：支持Mac/Linux/Windows及一切支持Java运行环境的操作系统
