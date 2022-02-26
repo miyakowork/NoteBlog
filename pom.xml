@@ -22,7 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <template.version>1.11.0.RELEASE</template.version>
-        <hutool.version>4.0.5</hutool.version>
+        <hutool.version>5.7.19</hutool.version>
         <java.version>1.8</java.version>
         <skipTests>true</skipTests>
     </properties>
